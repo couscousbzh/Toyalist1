@@ -8,21 +8,21 @@
       "price" : "1255",
       "currency" :  "$",
       "description" :  "Fusce vitae sodales nunc. Nullam vehicula nulla sed ligula sodales, vel tincidunt lorem condimentum. Cras rhoncus molestie mollis. Suspendisse. ",
-      "imageURL" : "//upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg"
+      "imageURL" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpOJUmdw3v8MN31gga9uCIrPIBwJYEdqDOHHXPLfIieCQMW23d9Q"
     }, 
     {
       "name" : "Game Boy",
       "price" : "70",
       "currency" :  "€",
       "description" :  "Vivamus eu velit nec tellus maximus tincidunt. Quisque ut erat et ex ornare pretium. Praesent feugiat hendrerit magna sit amet vehicula.nean sed odio quam.  ",
-      "imageURL" : "//upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg"
+      "imageURL" : "http://www.journaldugeek.com/files/2014/04/535549e8e7bfdGameBoy.jpg"
     },
     {
       "name" : "Ferrari",
       "price" : "9.99",
       "currency" :  "€",
       "description" :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate et risus sit amet elementum. ",
-      "imageURL" : "//upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
+      "imageURL" : "http://blogs-images.forbes.com/agoodman/files/2014/11/2014-ferrari-laferrari-photo-504428-s-1280x7821.jpg"
     }
   ]
 }
