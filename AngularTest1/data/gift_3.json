@@ -1,0 +1,10 @@
+﻿{
+  "name": "Ferrari",
+  "price": "9.99",
+  "currency":  "€",
+  "description" :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate et risus sit amet elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis rhoncus, arcu sed fringilla convallis, erat enim maximus lorem, vel bibendum magna leo at dolor. Aliquam turpis dui, vehicula eget dolor eu, congue scelerisque erat. Quisque bibendum, eros sit amet varius scelerisque, quam eros mattis magna, et tristique felis est vitae odio. Curabitur nec risus ut sapien semper scelerisque quis sed felis. Quisque id ultricies nunc. ",
+  "population": 312247000,
+  "flagURL": "//upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+  "capital": "Washington, D.C.",
+  "gdp": 16244
+}

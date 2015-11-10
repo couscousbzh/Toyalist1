@@ -1,0 +1,18 @@
+﻿<!--begin gift-list.html-->
+
+<h2>{{thegiftlist.id}} : {{thegiftlist.name}}</h2>
+<div id="giftlist">
+    <ul>
+        <li ng-repeat="gift in thegiftlist.gifts">  <!--giftdirective="gift"-->
+            
+            <img ng-src="{{gift.imageURL}}" width="100">
+            <h3>{{gift.name}} {{gift.price}} {{gift.currency}}</h3>
+            <p>Desc {{gift.description}}</p>
+
+            <a ng-click="deleteGift($index)" class="optionItem">Delete this gift</a>
+        </li>
+    </ul>
+</div>
+<a href="#" class="button" ng-click="addNewGift()">Add New Gift</a>
+
+<!--end gift-list.html-->

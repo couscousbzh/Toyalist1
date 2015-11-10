@@ -1,0 +1,10 @@
+﻿{
+  "name": "Game Boy",
+  "price": "70",
+  "currency":  "€",
+  "description" :  "Vivamus eu velit nec tellus maximus tincidunt. Quisque ut erat et ex ornare pretium. Praesent feugiat hendrerit magna sit amet vehicula. Maecenas dictum velit ut nulla efficitur, et porta sem aliquam. Fusce a diam placerat turpis dictum vestibulum. Aenean sed odio quam. Etiam sem sapien, molestie nec suscipit eu, maximus non leo. Donec nec ipsum id lectus auctor ultrices ac eget ante. ",
+  "population": 1205625000,
+  "flagURL": "//upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+  "capital": "New Delhi",
+  "gdp": 4716
+}

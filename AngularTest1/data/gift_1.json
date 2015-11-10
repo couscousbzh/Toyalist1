@@ -1,0 +1,10 @@
+﻿{
+  "name": "Poney",
+  "price": "1255",
+  "currency":  "$",
+  "description" :  "Fusce vitae sodales nunc. Nullam vehicula nulla sed ligula sodales, vel tincidunt lorem condimentum. Cras rhoncus molestie mollis. Suspendisse imperdiet tristique tortor et porta. Nunc justo ex, cursus ut lectus quis, viverra gravida nunc. Morbi purus lectus, vehicula ac massa a, malesuada ultricies turpis. Nullam egestas orci egestas, eleifend lorem sed, lacinia diam. Duis dignissim tempor laoreet. Sed tincidunt malesuada neque. Sed et elit eu ligula tincidunt dictum. Nulla id erat sed arcu consectetur aliquet eu vel eros. Suspendisse ac odio eros. Aliquam erat volutpat. Aliquam at arcu scelerisque libero accumsan vestibulum. ",
+  "population": 1359821000,
+  "flagURL": "//upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
+  "capital": "Beijing",
+  "gdp": 12261
+}
