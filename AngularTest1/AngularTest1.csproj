@@ -84,7 +84,7 @@
     <Content Include="images\pic07.jpg" />
     <Content Include="images\pic08.jpg" />
     <Content Include="images\profile_placeholder.gif" />
-    <Content Include="indexToyalist2.html" />
+    <Content Include="indexold.html" />
     <Content Include="packages.config" />
     <Content Include="data\countries.json" />
     <Content Include="data\country_1.json" />
