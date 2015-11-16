@@ -67,6 +67,7 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, giftfactory, 
         //Ne fonctionne pas a liste chargée
         //$scope.gifts.push($scope.newgift);
 
+        //Recharge la liste
         var allGifts = GiftDTO.query(function () {
             //console.log(allGifts);
             $scope.gifts = allGifts;
