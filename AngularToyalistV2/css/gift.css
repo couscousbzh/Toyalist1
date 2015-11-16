@@ -1,0 +1,40 @@
+﻿
+
+#giftlist {
+margin: auto;
+
+}
+
+#giftlist ul {
+list-style-type: none;
+
+}
+
+/*#giftlist h3 {
+font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}*/
+
+#giftlist li img {
+float: left;
+margin: 0 15px 0 0;
+}
+
+#giftlist li p {
+/*font: 200 12px/1.5 Georgia, Times New Roman, serif;*/
+text-align: justify
+}
+
+#giftlist li {
+padding: 10px;
+overflow: auto;
+}
+
+#giftlist li:hover {
+background: #eee;
+cursor: pointer;
+}
+
+#giftlist .optionItem {
+float: right;
+}
+

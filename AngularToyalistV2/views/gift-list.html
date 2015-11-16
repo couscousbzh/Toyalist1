@@ -1,0 +1,39 @@
+﻿<!--begin gift-list.html-->
+
+
+<div id="giftlist">
+    <ul>
+        <li ng-repeat="gift in gifts"> 
+            
+            <img ng-src="{{gift.imageURL}}" width="100">
+            <h3>{{gift.id}} {{gift.name}} {{gift.price}} {{gift.currency}}</h3>
+            <p>Desc {{gift.description}}</p>
+
+            <a ng-click="deleteGift(gift.id, $index)" class="optionItem"><i class="fa fa-trash-o"></i> Delete this gift</a>
+        </li>
+    </ul>
+</div>
+
+
+<form ng-submit="addNewGift()" name="formAddGift">
+
+        <label for="name">Name: </label>
+        <input id="name" type="text" placeholder="donnez moi un nom" ng-model="newGiftName">
+
+        <button class="button icon fa-plus" type="submit">Add</button>
+
+</form>
+
+
+<form ng-submit="crawlURL()" name="formCrawlUrl">
+
+    <label for="url">URL: </label>
+    <input id="url" type="text" placeholder="donnez moi une url" ng-model="urlToGet">
+
+    <button class="button icon fa-plus" type="submit">Add</button>
+
+</form>
+
+
+
+<!--end gift-list.html-->
