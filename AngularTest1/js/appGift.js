@@ -1,8 +1,10 @@
 ﻿var giftApp = angular.module('giftApp', [
   'ngRoute',
-  'giftControllers',
-  'giftsFactory',
-  'giftDirective'
+  'ngResource',
+  'giftControllersModule',
+  'giftFactoryModule',
+  'giftDirectiveModule',
+  'giftServiceModule'
 ]);
 
 giftApp.config(function ($routeProvider) {
@@ -20,3 +22,14 @@ giftApp.config(function ($routeProvider) {
           redirectTo: '/'
       });
 });
+
+giftApp.run(function ($http) {
+
+    //http://www.angulartutorial.net/2014/05/set-headers-for-all-http-calls-in.html
+
+    //$http.defaults.headers.common.Authorization = 'login YmVlcDpi';
+    ////or try this
+    //$http.defaults.headers.common['Auth-Token'] = 'login YmVlcDpi';
+
+});
+

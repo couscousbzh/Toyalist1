@@ -1,9 +1,9 @@
 ﻿<!--begin gift-list.html-->
 
-<h2>{{thegiftlist.id}} : {{thegiftlist.name}}</h2>
+<!--<h2>{{thegiftlist.id}} : {{thegiftlist.name}}</h2>-->
 <div id="giftlist">
     <ul>
-        <li ng-repeat="gift in thegiftlist.gifts">  <!--giftdirective="gift"-->
+        <li ng-repeat="gift in gifts">  <!-- thegiftlist.gifts      giftdirective="gift"-->
             
             <img ng-src="{{gift.imageURL}}" width="100">
             <h3>{{gift.name}} {{gift.price}} {{gift.currency}}</h3>
@@ -13,6 +13,11 @@
         </li>
     </ul>
 </div>
+
 <a href="#" class="button icon fa-plus" ng-click="addNewGift()">Add New Gift</a>
+
+
+
+
 
 <!--end gift-list.html-->

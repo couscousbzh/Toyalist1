@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{56D2B22D-C7EF-4D48-BC22-27F58D1F4782}</ProjectGuid>
+    <ProjectGuid>{45740D15-1193-4D33-9F69-86335FEA6FEF}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AngularTest1</RootNamespace>
-    <AssemblyName>AngularTest1</AssemblyName>
+    <RootNamespace>ToyalistAPI</RootNamespace>
+    <AssemblyName>ToyalistAPI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -48,6 +48,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -57,6 +63,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -66,41 +76,38 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\font-awesome.min.css" />
-    <Content Include="css\gift.css" />
-    <Content Include="css\skel.css" />
-    <Content Include="css\style-large.css" />
-    <Content Include="css\style-medium.css" />
-    <Content Include="css\style-small.css" />
-    <Content Include="css\style-xlarge.css" />
-    <Content Include="css\style-xsmall.css" />
-    <Content Include="css\style.css" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
-    <Content Include="images\bokeh_car_lights_bg.jpg" />
-    <Content Include="images\dark_tint.png" />
-    <Content Include="images\pic02.jpg" />
-    <Content Include="images\pic03.jpg" />
-    <Content Include="images\pic04.jpg" />
-    <Content Include="images\pic07.jpg" />
-    <Content Include="images\pic08.jpg" />
-    <Content Include="images\profile_placeholder.gif" />
-    <Content Include="indexold.html" />
-    <Content Include="js\angular-resource.js" />
-    <Content Include="js\giftService.js" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FormatterConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\GiftsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryCacher.cs" />
+    <Compile Include="Models\Gift.cs" />
+    <Compile Include="Models\GiftRepository.cs" />
+    <Compile Include="Models\IGiftRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="data\old\countries.json" />
-    <Content Include="data\old\country_1.json" />
-    <Content Include="data\old\country_3.json" />
-    <Content Include="data\old\country_2.json" />
-    <Content Include="data\old\gifts.json" />
-    <Content Include="data\old\gift_1.json" />
-    <Content Include="data\old\gift_2.json" />
-    <Content Include="data\old\gift_3.json" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="data\giftlist_1.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -109,31 +116,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="elements.html" />
-    <Content Include="generic.html" />
-    <Content Include="index.html" />
-    <Content Include="indexToyalist.html" />
-    <Content Include="js\angular-route.min.js" />
-    <Content Include="js\angular.min.js" />
-    <Content Include="js\appGift.js" />
-    <Content Include="js\giftsFactory.js" />
-    <Content Include="js\giftDirective.js" />
-    <Content Include="js\giftControllers.js" />
-    <Content Include="js\html5shiv.js" />
-    <Content Include="js\init.js" />
-    <Content Include="js\jquery.min.js" />
-    <Content Include="js\skel-layers.min.js" />
-    <Content Include="js\skel.min.js" />
-    <Content Include="views\gift-add.html" />
-    <Content Include="views\gift-detail.html" />
-    <Content Include="views\gift-list.html" />
-    <Content Include="templates\gift.html" />
-    <Content Include="Web.config" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -147,9 +131,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58775</DevelopmentServerPort>
+          <DevelopmentServerPort>14463</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58776/</IISUrl>
+          <IISUrl>http://localhost:14463/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,4 +1,4 @@
-﻿angular.module('giftDirective', [])
+﻿angular.module('giftDirectiveModule', [])
        .directive('giftdirective', function () {
            return {
                scope: { gift: '=' },

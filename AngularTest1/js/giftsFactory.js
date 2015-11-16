@@ -1,5 +1,5 @@
-﻿angular.module('giftsFactory', [])
-       .factory('giftfactory', function ($http) {
+﻿angular.module('giftFactoryModule', [])
+    .factory('giftfactory', function ($http) {
            return {
                //list: function (callback) {
                //    $http({
@@ -14,7 +14,7 @@
                         url: 'data/giftlist_1.json',
                         cache: false
                     }).success(callback);                   
-                }             
+                }                           
 
                //,
                //find: function (id, callback) {
@@ -24,5 +24,8 @@
                //        cache: true
                //    }).success(callback);
                //}
+
+
+
            };
        });
