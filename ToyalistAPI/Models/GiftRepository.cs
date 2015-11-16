@@ -73,6 +73,8 @@ namespace ToyalistAPI.Models
                     ImageURL = "http://images.king-jouet.com/140/GU179709_140.jpg"
                 }
             };
+
+            _nextId = gifts.Count() + 1;
         }
 
         public IEnumerable<Gift> GetAll()

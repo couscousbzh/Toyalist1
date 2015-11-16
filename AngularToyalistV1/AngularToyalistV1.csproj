@@ -79,6 +79,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="allInOne2-1.html" />
+    <Content Include="allInOne2.html" />
+    <Content Include="allInOne.html" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\gift.css" />
     <Content Include="css\skel.css" />
@@ -88,6 +91,8 @@
     <Content Include="css\style-xlarge.css" />
     <Content Include="css\style-xsmall.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\todolist.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="images\bokeh_car_lights_bg.jpg" />
     <Content Include="images\dark_tint.png" />

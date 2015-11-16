@@ -91,12 +91,12 @@ namespace ToyalistAPI.Controllers
 
             try
             {
-                repository.Add(gift);
+                Gift createdGift = repository.Add(gift);
 
                 //TO DO : ajout en BD 
 
 
-                return Ok();
+                return Ok(createdGift);
             }
             catch (Exception ex)
             {

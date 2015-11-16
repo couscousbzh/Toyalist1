@@ -1,49 +1,57 @@
 ﻿var giftControllersModule = angular.module('giftControllersModule', []);
 
-var defaultList = { 'id': 0, 'name': 'default', gifts: [] };
-
 giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO) {
-          
+   
+    //$scope.$watch('gifts', function () {
+    //    console.log('gifts changed');
+    //    console.log($scope.gifts);
+    //});
 
-    var allGifts = GiftDTO.query(function () {
-        //console.log(allGifts);
-        $scope.gifts = allGifts;
-    }); //query() returns all the entries
     
-    
-    $scope.deleteGift = function (index) {
-        $scope.gifts[index].$delete(function () {
+    $scope.deleteGift = function (giftId, index) {
+        GiftDTO.delete({ id: giftId }, function () {
             //Remove the list on the view
             $scope.gifts.splice(index, 1);
         });
     };
 
-    $scope.addNewGift = function () {
+    $scope.addNewGift = function () {      
 
-        var i = $scope.gifts.length;
-
-        $scope.newgift = new GiftDTO();
-        //$scope.newgift.id = "";
-        $scope.newgift.name = "new item " + i;
-        $scope.newgift.price = '0';
-        $scope.newgift.currency = '£';
-        $scope.newgift.description = 'new item description';
-        $scope.newgift.imageURL = 'http://static.bbc.co.uk/history/img/ic/640/images/resources/histories/titanic.jpg';
+        //console.log(formAddGift.name.value);
+        //console.log($scope.newGiftName);
         
-        GiftDTO.create($scope.newgift);
+        var myNewgift = new GiftDTO();
+        myNewgift.id = 0;
+        myNewgift.name = formAddGift.name.value;
+        myNewgift.price = '0';
+        myNewgift.currency = '£';
+        myNewgift.description = 'new item description';
+        myNewgift.imageURL = 'http://static.bbc.co.uk/history/img/ic/640/images/resources/histories/titanic.jpg';
 
+        var giftDTOCreated = GiftDTO.create(myNewgift, function () {
+            $scope.gifts.push(giftDTOCreated);
+        });
         
-
-        //Ne fonctionne pas a liste chargéen why ?
-        //$scope.gifts.push($scope.newgift);
-
-        //Recharge la liste
-        var allGifts = GiftDTO.query(function () {
-            //console.log(allGifts);
-            $scope.gifts = allGifts;
-        }); //query() returns all the entries
-
 
     };
+    
+
+    /******************************************************/
+    /* LOAD de la liste complete des cadeaux depuis l'API */
+
+    //$scope.gifts = [];
+
+    $scope.gifts = GiftDTO.query();
+
+   
+    //var allGifts = GiftDTO.query(function () {
+        
+    //    //console.log(allGifts);
+
+    //    $scope.gifts = allGifts;
+
+    //    console.log('ca y est j ai fini d afficher la liste au load du controler');
+    //}); //query() returns all the entries
+
 
 });
