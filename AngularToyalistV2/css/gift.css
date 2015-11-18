@@ -38,3 +38,14 @@ cursor: pointer;
 float: right;
 }
 
+
+#giftlist .imageFromcCawl {
+   clear:both;
+}
+
+
+#giftlist .imageFromcCrawl li img {
+    margin: 0 15px 0 0;
+    background-color: blue;
+    display:block;
+}

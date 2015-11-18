@@ -3,11 +3,22 @@
 
 <div id="giftlist">
     <ul>
-        <li ng-repeat="gift in gifts"> 
-            
-            <img ng-src="{{gift.imageURL}}" width="100">
+        <li ng-repeat="gift in gifts">
+
+            <a href="{{gift.imageURL}}" target="_blank">
+                <img ng-src="{{gift.imageURL}}" width="100">
+            </a>
+
             <h3>{{gift.id}} {{gift.name}} {{gift.price}} {{gift.currency}}</h3>
             <p>Desc {{gift.description}}</p>
+
+            <div class="imageFromcCrawl">
+                <div ng-repeat="image in gift.imagesURL">
+                    <a href="{{image}}" target="_blank">
+                        <img ng-src="{{image}}" width="50">
+                    </a>
+                </div>
+            </div>
 
             <a ng-click="deleteGift(gift.id, $index)" class="optionItem"><i class="fa fa-trash-o"></i> Delete this gift</a>
         </li>
