@@ -1,51 +1,75 @@
 ﻿
 
 #giftlist {
-margin: auto;
+    margin: auto;
 
 }
+
+#giftlist .clear {
+    clear:both;
+}
+
+*#giftlist h3 {
+    /*font: bold 20px/1.5 Helvetica, Verdana, sans-serif;*/
+    display:inline-block;
+}
+
+*#giftlist h2 {
+    /*font: bold 20px/1.5 Helvetica, Verdana, sans-serif;*/
+    display:inline-block;
+    float: right;
+}
+
+*#giftlist .right {
+    float: right;
+
+}
+
 
 #giftlist ul {
-list-style-type: none;
+    list-style-type: none;
 
 }
 
-/*#giftlist h3 {
-font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-}*/
-
 #giftlist li img {
-float: left;
-margin: 0 15px 0 0;
+    float: left;
+    margin: 0 15px 0 0;
+    /*max-width: 150px;*/
+    width: 150px;
 }
 
 #giftlist li p {
-/*font: 200 12px/1.5 Georgia, Times New Roman, serif;*/
-text-align: justify
+    /*font: 200 12px/1.5 Georgia, Times New Roman, serif;*/
+    text-align: justify
 }
 
 #giftlist li {
-padding: 10px;
-overflow: auto;
+    padding: 10px;
+    overflow: auto;
 }
 
 #giftlist li:hover {
-background: #eee;
-cursor: pointer;
+    background: #eee;
+    /*cursor: pointer;*/
 }
+
+#giftlist a {   
+    cursor: pointer;
+}
+
 
 #giftlist .optionItem {
-float: right;
+    float: right;
 }
 
 
-#giftlist .imageFromcCawl {
-   clear:both;
+#giftlist .imageFromCrawl {
+    /*clear:both;*/
 }
 
-
-#giftlist .imageFromcCrawl li img {
-    margin: 0 15px 0 0;
-    background-color: blue;
+#giftlist .imageFromCrawl img {
+    width: 75px;
     display:block;
+    margin: 0 15px 0 0;
 }
+

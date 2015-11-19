@@ -1,8 +1,20 @@
 ﻿var giftServiceModule = angular.module('giftServiceModule', [])
 
 
-var ToyalistURlWebAPI_Gifts = 'http://toyalist.reactor.fr/api/gifts/:giftId';
-var ToyalistURlWebAPI_Gifts_Local = 'http://localhost:14463/api/gifts/:giftId';
+var environnement = "DEV";
+
+
+var domain;
+if (environnement == "PROD")
+{
+    domain = "http://toyalist.reactor.fr/"
+}
+if (environnement == "DEV") {
+    domain = "http://localhost:14463/"
+}
+var ToyalistURlWebAPI_Gifts = domain + 'api/gifts/:giftId';
+var ToyalistURlWebAPI_Crawler = domain + 'api/Crawler';
+
 
 giftServiceModule.factory('GiftDTO', ['$resource',
     function ($resource) {
@@ -30,7 +42,7 @@ giftServiceModule.service(
         // I add a friend with the given name to the remote collection.
         function crawlerTask(url) {
                         
-            var myUrl = 'http://toyalist.reactor.fr/api/Crawler?url=' + url;
+            var myUrl = ToyalistURlWebAPI_Crawler + '?url=' + url;
 
             var request = $http({
                 method: "get",

@@ -51,7 +51,7 @@ namespace ToyalistAPI.Models
                 new Gift {
                     Id = 1,
                     Name = "Poupé",
-                    Price = 13,
+                    Price = "13",
                     Currency =  "$",
                     Description =  "Fusce vitae sodales nunc. Nullam vehicula nulla sed ligula sodales, vel tincidunt lorem condimentum. Cras rhoncus molestie mollis. Suspendisse. ",
                     ImageURL = "https://i.gyazo.com/4c62c1999e93cd1ca01376a03a75a5a0.png"
@@ -59,7 +59,7 @@ namespace ToyalistAPI.Models
                 new Gift {
                     Id = 2,
                     Name = "Circuit",
-                    Price = 70,
+                    Price = "70",
                     Currency =  "€",
                     Description =  "Vivamus eu velit nec tellus maximus tincidunt. Quisque ut erat et ex ornare pretium. Praesent feugiat hendrerit magna sit amet vehicula.nean sed odio quam.  ",
                     ImageURL = "http://images.king-jouet.com/6/GU225653_6.jpg"
@@ -67,7 +67,7 @@ namespace ToyalistAPI.Models
                 new Gift {
                     Id = 3,
                     Name = "Baby Foot",
-                    Price = 9.99,
+                    Price = "9.99",
                     Currency =  "€",
                     Description =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate et risus sit amet elementum. ",
                     ImageURL = "http://images.king-jouet.com/140/GU179709_140.jpg"

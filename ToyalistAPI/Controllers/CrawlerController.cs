@@ -11,6 +11,7 @@ using System.IO;
 using System.Text;
 using System.Web.Http.Cors;
 using System.Web;
+using System.Configuration;
 
 using ToyalistAPI.Models;
 using System.Text.RegularExpressions;
@@ -82,24 +83,39 @@ namespace ToyalistAPI.Controllers
 
 
                 List<String> imgs = (from x in doc.DocumentNode.Descendants()
-                                     where x.Name.ToLower() == "img"
-                                     select x.Attributes["src"].Value).ToList<String>();
+                                    where x.Name.ToLower() == "img"
+                                    select x.Attributes["src"].Value).ToList<String>();
+
+                String mainImageUrl = "";
+
+                String price = "";
+                String currency = "";
+                
+
+                /* Standard Google itemprop "price" SEO */
+                String itemprop_price = (from x in doc.DocumentNode.Descendants()
+                                where x.Name.ToLower() == "meta"
+                                && x.Attributes["itemprop"] != null
+                                && x.Attributes["itemprop"].Value.ToLower() == "price"
+                                         select x.Attributes["content"].Value).FirstOrDefault();
+
+                /* Standard Google itemprop "priceCurrency" SEO */
+                String itemprop_pricecurrency = (from x in doc.DocumentNode.Descendants()
+                                         where x.Name.ToLower() == "meta"
+                                         && x.Attributes["itemprop"] != null
+                                         && x.Attributes["itemprop"].Value.ToLower() == "pricecurrency"
+                                         select x.Attributes["content"].Value).FirstOrDefault();
 
 
+              
                 /*********************************/
                 /* Clean and prepare data */
-                //Ajoute le domaine au path de chaque image et evite d'avoir deux '//', si l'url est relative
-                //imgs = imgs.Select(x => uri.AbsoluteUri + x.TrimStart('/')).ToList();
-                for (int i = 0; i < imgs.Count; i++) {
 
-                    if (imgs[i].StartsWith("http"))
-                    {
-                        //fait rien
-                    }
-                    else
-                    {
-                        imgs[i] = uri.AbsoluteUri + imgs[i].TrimStart('/');
-                    }
+                #region Image list Work
+                //Ajoute le domaine au path de chaque image si besoin et evite d'avoir deux '//', si l'url est relative
+                for (int i = 0; i < imgs.Count; i++) {
+                    if (!imgs[i].StartsWith("http"))
+                        imgs[i] = uri.AbsoluteUri + imgs[i].TrimStart('/');                    
                 }
                 
                 //Vire les doublons (important pour ng-repeat angular qui n'aime pas trop)
@@ -110,6 +126,100 @@ namespace ToyalistAPI.Controllers
                         where x.Contains(".jpg") || x.Contains(".jpeg") || x.Contains(".png") || x.Contains(".gif") || x.Contains(".svg")
                         select x).ToList();
 
+                //Filtre et classe les images par son poids en octet
+                long minimumImageSize = long.Parse(ConfigurationManager.AppSettings["minimumImageSize"]);
+                Dictionary<String, long> imgsDicFiltered = new Dictionary<string, long>();
+                foreach (string img in imgs)
+                {
+                    long fileSize;
+
+                    try
+                    {
+                        fileSize = Tools.GetImageSize(img);
+
+                        if (fileSize > minimumImageSize)
+                            imgsDicFiltered.Add(img, fileSize);
+                    }
+                    catch {
+                        //Dans l'éventualité ou le crawler n'a pas accès à la ressource image (403), filtre distant, IP ou raison inconnue... 
+                        //on l'ajoute quand meme.
+                        imgsDicFiltered.Add(img, 0);
+                    }
+                }
+                //Classe la liste des images par ordre de poids, de la plus grosse a la plus petite
+                List<KeyValuePair<string, long>> myList = imgsDicFiltered.ToList();
+                myList.Sort((x, y) => y.Value.CompareTo(x.Value));
+                imgs = myList.Select(x => x.Key).ToList();
+
+                //Selectionne seulement les 5 premiers
+                imgs = imgs.Take(5).ToList();
+
+                #endregion
+
+                #region Main Image list
+
+                //Par defaut l'image principale sera celle indiqué par les tags Facebook. Sinon on prends la premiere de la liste ci dessus. Sinon on a une image par défaut.
+
+                //PATCH www.rueducommerce.fr
+                // --> l'image og:image meta facebook n'est pas bonne. 
+                if (url.ToLower().Contains("www.rueducommerce.fr"))
+                    ogimage = "";
+
+                if (!String.IsNullOrEmpty(ogimage))
+                    mainImageUrl = ogimage;
+                else
+                {
+                    if (imgs.Count > 0)
+                        mainImageUrl = imgs[0];
+                    else
+                        mainImageUrl = "http://reactor.fr/Tests/Toyalist/images/no-thumb.png'";
+                }
+                
+                #endregion
+                
+                #region Price search
+
+                /* Patch Rue du commerce*/
+                if (url.ToLower().Contains("www.rueducommerce.fr")) { 
+                   
+                    itemprop_price = (from x in doc.DocumentNode.Descendants()
+                                        where x.Attributes["itemprop"] != null
+                                        && x.Attributes["itemprop"].Value.ToLower() == "price"
+                                        select x.InnerHtml).FirstOrDefault();
+                }
+
+
+                /* Patch Rue du commerce*/
+                if (url.ToLower().Contains("fnac.com"))
+                {
+                    itemprop_price = (from x in doc.DocumentNode.Descendants()
+                                        where x.Name.ToLower() == "meta"
+                                        && x.Attributes["itemprop"] != null
+                                        && x.Attributes["itemprop"].Value.ToLower() == "lowprice"
+                                      select x.Attributes["content"].Value).FirstOrDefault();
+
+                    //Fnac returns value like this --> 35&nbsp;&euro;
+                    //We apply a regex to get only numbers
+                    itemprop_price = Regex.Match(itemprop_price, @"\d+").Value;
+                }
+
+
+                if (!String.IsNullOrEmpty(itemprop_price))
+                    price = itemprop_price;
+                else
+                    price = "?";
+
+                #endregion
+
+                #region Currency               
+                if (!String.IsNullOrEmpty(itemprop_pricecurrency))
+                    currency = itemprop_pricecurrency;
+                else
+                    currency = "€";
+                #endregion
+
+
+                /*************************************/
 
                 //decode les éventuels caractère encodé en html
                 title = HttpUtility.HtmlDecode(title).TrimStart().TrimEnd();
@@ -118,17 +228,36 @@ namespace ToyalistAPI.Controllers
                 ogdescription = HttpUtility.HtmlDecode(ogdescription);
                 ogimage = HttpUtility.HtmlDecode(ogimage);
                 ogurl = HttpUtility.HtmlDecode(ogurl);
+                price = HttpUtility.HtmlDecode(price);
+                currency = HttpUtility.HtmlDecode(currency);
 
                 /*********************************/
+                /* Compose response */
 
                 HtmlContent htmlContent = new HtmlContent();
-                htmlContent.title = title;
+                htmlContent.urlcrawled = url;
+                if (!String.IsNullOrEmpty(ogtitle))
+                    htmlContent.title = ogtitle;
+                else
+                    htmlContent.title = title;
+                if (!String.IsNullOrEmpty(ogdescription))
+                    htmlContent.description = ogdescription;
+                else
+                    htmlContent.description = desc;
                 htmlContent.description = desc;
                 htmlContent.imagesURL = imgs;
-                htmlContent.ogtitle = ogtitle;
-                htmlContent.ogdescription = ogdescription;
-                htmlContent.ogurl = ogurl;
-                htmlContent.ogimage = ogimage;
+                //htmlContent.ogtitle = ogtitle;
+                //htmlContent.ogdescription = ogdescription;
+                //htmlContent.ogurl = ogurl;
+                //htmlContent.ogimage = ogimage;
+                htmlContent.price = price;
+                htmlContent.currency = currency;
+                htmlContent.mainImageURL = mainImageUrl;
+
+
+
+                /*********************************/
+                /* Send response */
 
                 string json = JsonConvert.SerializeObject(htmlContent);
 

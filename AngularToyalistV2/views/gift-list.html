@@ -1,18 +1,78 @@
 ﻿<!--begin gift-list.html-->
 
 
+
+<form ng-submit="megaCrawlURL()" name="formMegaCrawlUrl">
+    <button class="button icon fa-plus" type="submit">Add multi Urls</button>
+</form>
+
+<!--<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Item 1</td>
+                <td>Ante turpis integer aliquet porttitor.</td>
+                <td>29.99</td>
+            </tr>
+            <tr>
+                <td>Item 2</td>
+                <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                <td>19.99</td>
+            </tr>
+            <tr>
+                <td>Item 3</td>
+                <td> Morbi faucibus arcu accumsan lorem.</td>
+                <td>29.99</td>
+            </tr>
+            <tr>
+                <td>Item 4</td>
+                <td>Vitae integer tempus condimentum.</td>
+                <td>19.99</td>
+            </tr>
+            <tr>
+                <td>Item 5</td>
+                <td>Ante turpis integer aliquet porttitor.</td>
+                <td>29.99</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td>100.00</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>-->
+
+
 <div id="giftlist">
     <ul>
         <li ng-repeat="gift in gifts">
 
-            <a href="{{gift.imageURL}}" target="_blank">
-                <img ng-src="{{gift.imageURL}}" width="100">
+            <span class="image left">               
+                <a href="{{gift.imageURL}}" target="_blank">
+                    <img ng-src="{{gift.imageURL}}">
+                </a>
+            </span>
+
+            <a href="{{gift.url}}" target="_blank">
+                <h3>{{gift.id}} - {{gift.name}} </h3>
             </a>
 
-            <h3>{{gift.id}} {{gift.name}} {{gift.price}} {{gift.currency}}</h3>
+            <h3 class="right">{{gift.price}} {{gift.currency}}</h3>
+
+            <!--<div class="clear"></div>-->
+
             <p>Desc {{gift.description}}</p>
 
-            <div class="imageFromcCrawl">
+            <div class="imageFromCrawl">
                 <div ng-repeat="image in gift.imagesURL">
                     <a href="{{image}}" target="_blank">
                         <img ng-src="{{image}}" width="50">
