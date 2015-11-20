@@ -1,7 +1,7 @@
 ﻿var giftControllersModule = angular.module('giftControllersModule', []);
 
 giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, CrawlerService) {
-   
+
     //$scope.$watch('gifts', function () {
     //    console.log('gifts changed');
     //    console.log($scope.gifts);
@@ -55,13 +55,40 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, Craw
     $scope.megaCrawlURL = function () {
         
         var urlList = [];
-        urlList.push('http://www.banggood.com/fr/Digital-Laser-Distance-Meter-Rangefinder-Measure-Diastimeter-40m-50m-60m-70m-80m-100m-optional-p-1009122.html');
-        urlList.push('http://www.amazon.fr/gp/product/B013GRHYUW/ref=br_asw_pdt-2/280-3197474-9607032?pf_rd_m=A1X6FK5RDHNB96&pf_rd_s=desktop-2&pf_rd_r=1M50WC1QENGB466P8Q9X&pf_rd_t=36701&pf_rd_p=722563887&pf_rd_i=desktop');
-        urlList.push('http://livre.fnac.com/a8858480/Christophe-Felder-Gateaux#int=S:Nos meilleures ventes|Cuisine et vins|845|8858480|BL2|L1');
-        urlList.push('http://www.boulanger.com/ref/1051658');
-        urlList.push('http://www.darty.com/nav/achat/telephonie/telephone_mobile_seul/mobile_reconditionne/apple_iph_4s_16_reco_blanc.html#dartyclic=H_pdt-du-moment_2_4175301');
+
+        //Parfait
         urlList.push('http://www.rueducommerce.fr/Jeux-Consoles/PS4/Console-PS4/SONY/4902797-PlayStation-4-500-Go.htm#moid:MO-F7C09M53554724');
-        urlList.push('');
+        urlList.push('http://livre.fnac.com/a8858480/Christophe-Felder-Gateaux#int=S:Nos meilleures ventes|Cuisine et vins|845|8858480|BL2|L1');
+        
+        //Fonctionne presque bien 
+        urlList.push('http://www.darty.com/nav/achat/accessoires/telephone_mobile_audio/kit_pieton_mains-libres/philips_she7005a.html');
+        
+        //Fonctionne mais manque le prix
+        //urlList.push('http://www.amazon.fr/gp/product/B013GRHYUW/ref=br_asw_pdt-2/280-3197474-9607032?pf_rd_m=A1X6FK5RDHNB96&pf_rd_s=desktop-2&pf_rd_r=1M50WC1QENGB466P8Q9X&pf_rd_t=36701&pf_rd_p=722563887&pf_rd_i=desktop');
+        //urlList.push('http://www.cdiscount.com/auto/huiles-additifs/bardahl-nettoyant-injecteurs-diesel-1l/f-13373-bar3266720115517.html#mpos=1|cd');
+        //urlList.push('http://www.decathlon.fr/vtt-rockrider-500-id_8293150.html');
+        //urlList.push('http://www.leroymerlin.fr/v3/p/produits/pack-wc-a-poser-ideal-standard-exacto-sortie-horizontale-e4713');
+        //urlList.push('http://www.ikea.com/fr/fr/catalog/products/50193256/');
+        //urlList.push('http://www.laredoute.fr/ppdp/prod-324518205.aspx');
+        //urlList.push('http://www.sarenza.com/pepe-jeans-game-jack-k-s814920-p0000127626');
+        //urlList.push('https://www.zalando.fr/pier-one-chaussures-a-lacets-brown-pi912a0f1-o11.html');
+
+
+        //plusieurs pbs, prix, images...
+        //urlList.push('http://multimedia.e-leclerc.com/univers+multimedia/catalogue/produit/r%C3%A9flex-num%C3%A9rique,10241/');
+        //urlList.push('http://www.castorama.fr/store/Coupe-branches--nettoyeur-prod6920177.html?isFeaturedProduct=true&navAction=jump&categoryId=cat_id_1418&navCount=0');
+        
+        //Marche pas
+        //urlList.push('http://www.banggood.com/fr/Digital-Laser-Distance-Meter-Rangefinder-Measure-Diastimeter-40m-50m-60m-70m-80m-100m-optional-p-1009122.html');
+        //urlList.push('http://www.boulanger.com/ref/1051658');
+
+        
+        
+        //urlList.push('');
+        //urlList.push('');
+
+       
+
 
         for (i = 0 ; i < urlList.length ; i++) {
 
@@ -104,57 +131,14 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, Craw
         myNewgift.description = htmlContent.description;
         myNewgift.imageURL = htmlContent.mainImageURL;
         myNewgift.imagesURL = htmlContent.imagesURL;
-
-        
-
-        //Par defaut on prends les données meta de facebook
-        //if (htmlContent.ogtitle)
-        //    myNewgift.name = htmlContent.ogtitle;
-
-        //if (htmlContent.ogdescription)
-        //    myNewgift.description = htmlContent.ogdescription;
-
-        //if (htmlContent.ogimage)
-        //    myNewgift.imageURL = htmlContent.ogimage;
-
-
-        ////Si on pas d'image principale, on lui attribut la premiere image du crawl (la plus lourde en taille)
-        //if (myNewgift.imageURL == '')
-        //{
-        //    if (myNewgift.imagesURL.length > 0)
-        //        myNewgift.imageURL = myNewgift.imagesURL[0];
-        //    else
-        //        myNewgift.imageURL = 'http://reactor.fr/Tests/Toyalist/images/no-thumb.png'; //Default image when none
-        //}
-        
-        /*************************************/
-        /*PATCH SPECIFIQUE : A Faire evoluer */
-
-        //www.rueducommerce.fr
-        // --> l'image og:image meta facebook n'est pas bonne. Fait coté client
-        //if (htmlContent.urlcrawled.indexOf("www.rueducommerce.fr") > -1)
-        //{
-        //    if (myNewgift.imagesURL.length > 0)
-        //        myNewgift.imageURL = myNewgift.imagesURL[0];
-        //    else
-        //        myNewgift.imageURL = 'http://reactor.fr/Tests/Toyalist/images/no-thumb.png'; //Default image when none
-        //}
-
+       
         /*************************************/
 
-        /*Clean formate prepare*/
-        //Devra faire parti d'une directive !
-        var maxTitleCaracterLenght = 45;
-        if (myNewgift.name.length > maxTitleCaracterLenght)
-            myNewgift.name = myNewgift.name.substring(0, maxTitleCaracterLenght) + '(...)';
+       
 
-
-        console.log('prout ');
+        
         //Cree un objet giftDTO, Angular va gérer en Restfull la création grace a $resource.
         var giftDTOCreated = GiftDTO.create(myNewgift, function () {
-
-            console.log('prout ' + giftDTOCreated.id);
-
             myNewgift.id = giftDTOCreated.id; //récupère l'id de l'objet créer par le serveur, indispensable pour le delete
             $scope.gifts.push(myNewgift);
         });

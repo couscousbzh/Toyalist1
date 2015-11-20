@@ -1,19 +1,19 @@
 ﻿var giftServiceModule = angular.module('giftServiceModule', [])
 
 
-var environnement = "DEV";
+var environnement = "PROD";
 
 
-var domain;
+var domainAPI;
 if (environnement == "PROD")
 {
-    domain = "http://toyalist.reactor.fr/"
+    domainAPI = "http://toyalist-api.reactor.fr/"
 }
 if (environnement == "DEV") {
-    domain = "http://localhost:14463/"
+    domainAPI = "http://localhost:14463/"
 }
-var ToyalistURlWebAPI_Gifts = domain + 'api/gifts/:giftId';
-var ToyalistURlWebAPI_Crawler = domain + 'api/Crawler';
+var ToyalistURlWebAPI_Gifts = domainAPI + 'api/gifts/:giftId';
+var ToyalistURlWebAPI_Crawler = domainAPI + 'api/Crawler';
 
 
 giftServiceModule.factory('GiftDTO', ['$resource',

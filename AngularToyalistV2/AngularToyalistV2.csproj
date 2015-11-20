@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\no-thumb.png" />
+    <Content Include="js\giftFilters.js" />
+    <Content Include="js\giftDirective.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />

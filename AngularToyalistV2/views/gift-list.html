@@ -55,18 +55,22 @@
 <div id="giftlist">
     <ul>
         <li ng-repeat="gift in gifts">
-
+            
             <span class="image left">               
                 <a href="{{gift.imageURL}}" target="_blank">
                     <img ng-src="{{gift.imageURL}}">
                 </a>
             </span>
 
-            <a href="{{gift.url}}" target="_blank">
-                <h3>{{gift.id}} - {{gift.name}} </h3>
-            </a>
+            <h3 id="prix">{{gift.price}} {{gift.currency}}</h3>
 
-            <h3 class="right">{{gift.price}} {{gift.currency}}</h3>
+            <div class="title">
+                <a href="{{gift.url}}" target="_blank">
+                    <h3>{{gift.id}} - {{gift.name | setMaxTitleLength:20 }} </h3>
+                </a>
+            </div>
+
+           
 
             <!--<div class="clear"></div>-->
 
@@ -81,6 +85,7 @@
             </div>
 
             <a ng-click="deleteGift(gift.id, $index)" class="optionItem"><i class="fa fa-trash-o"></i> Delete this gift</a>
+
         </li>
     </ul>
 </div>

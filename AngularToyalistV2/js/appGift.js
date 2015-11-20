@@ -2,7 +2,9 @@
   'ngRoute',
   'ngResource',
   'giftControllersModule',
-  'giftServiceModule'
+  'giftServiceModule',
+  'giftDirectiveModule',
+  'giftFiltersModule'
 ]);
 
 giftApp.config(function ($routeProvider) {

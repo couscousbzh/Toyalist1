@@ -172,7 +172,7 @@ namespace ToyalistAPI.Controllers
                     if (imgs.Count > 0)
                         mainImageUrl = imgs[0];
                     else
-                        mainImageUrl = "http://reactor.fr/Tests/Toyalist/images/no-thumb.png'";
+                        mainImageUrl = "http://toyalist.reactor.fr/images/no-thumb.png";
                 }
                 
                 #endregion
