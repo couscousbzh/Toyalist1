@@ -15,6 +15,7 @@ using System.Configuration;
 
 using ToyalistAPI.Models;
 using System.Text.RegularExpressions;
+using System.Net.Http.Headers;
 
 namespace ToyalistAPI.Controllers
 {
@@ -29,9 +30,9 @@ namespace ToyalistAPI.Controllers
             {
                 Uri uri = new Uri(url);
 
+                #region Requete Get HTML
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(uri);
                 request.Method = WebRequestMethods.Http.Get;
-                //request.ContentType = "application/x-www-form-urlencoded;";
                 request.Headers.Add("Content-Encoding", "utf-8");
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -42,72 +43,90 @@ namespace ToyalistAPI.Controllers
 
                 response.Close();
 
+                #endregion
+
+                #region HTML Parsing using HTMLAgilityPack
+
+
+                String title = "";
+                String desc = "";
+                String mainImageUrl = "";
+                String price = "";
+                String currency = "";
+                String ogtitle = "";
+                String ogdescription = "";
+                String ogimage = "";
+                String ogurl = "";
+                List<String> imgs = new List<string>();
+                String itemprop_price = "";
+                String itemprop_pricecurrency = "";
+
+
                 HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(responseString);
 
-                String title = (from x in doc.DocumentNode.Descendants()
+
+                title = (from x in doc.DocumentNode.Descendants()
                                 where x.Name.ToLower() == "title"
                                 select x.InnerText).FirstOrDefault();
 
-                String desc = (from x in doc.DocumentNode.Descendants()
+                desc = (from x in doc.DocumentNode.Descendants()
                                where x.Name.ToLower() == "meta"
                                && x.Attributes["name"] != null
                                && x.Attributes["name"].Value.ToLower() == "description"
                                select x.Attributes["content"].Value).FirstOrDefault();
 
 
-                String ogtitle = (from x in doc.DocumentNode.Descendants()
+                ogtitle = (from x in doc.DocumentNode.Descendants()
                                   where x.Name.ToLower() == "meta"
                                   && x.Attributes["property"] != null
                                   && x.Attributes["property"].Value.ToLower() == "og:title"
                                   select x.Attributes["content"].Value).FirstOrDefault();
 
-                String ogdescription = (from x in doc.DocumentNode.Descendants()
+                ogdescription = (from x in doc.DocumentNode.Descendants()
                                         where x.Name.ToLower() == "meta"
                                         && x.Attributes["property"] != null
                                         && x.Attributes["property"].Value.ToLower() == "og:description"
                                         select x.Attributes["content"].Value).FirstOrDefault();
 
 
-                String ogimage = (from x in doc.DocumentNode.Descendants()
+                ogimage = (from x in doc.DocumentNode.Descendants()
                                   where x.Name.ToLower() == "meta"
                                   && x.Attributes["property"] != null
                                   && x.Attributes["property"].Value.ToLower() == "og:image"
                                   select x.Attributes["content"].Value).FirstOrDefault();
 
-                String ogurl = (from x in doc.DocumentNode.Descendants()
+                ogurl = (from x in doc.DocumentNode.Descendants()
                                 where x.Name.ToLower() == "meta"
                                 && x.Attributes["property"] != null
                                 && x.Attributes["property"].Value.ToLower() == "og:url"
                                 select x.Attributes["content"].Value).FirstOrDefault();
 
-
-                List<String> imgs = (from x in doc.DocumentNode.Descendants()
-                                    where x.Name.ToLower() == "img"
-                                    select x.Attributes["src"].Value).ToList<String>();
-
-                String mainImageUrl = "";
-
-                String price = "";
-                String currency = "";
+                try {
+                    imgs = (from x in doc.DocumentNode.Descendants()
+                            where x.Name.ToLower() == "img"
+                            select x.Attributes["src"].Value).ToList<String>();
+                }
+                catch { }//Plante sur priceminister, va savoir pourquoi.
                 
 
                 /* Standard Google itemprop "price" SEO */
-                String itemprop_price = (from x in doc.DocumentNode.Descendants()
+                itemprop_price = (from x in doc.DocumentNode.Descendants()
                                 where x.Name.ToLower() == "meta"
                                 && x.Attributes["itemprop"] != null
                                 && x.Attributes["itemprop"].Value.ToLower() == "price"
                                          select x.Attributes["content"].Value).FirstOrDefault();
 
                 /* Standard Google itemprop "priceCurrency" SEO */
-                String itemprop_pricecurrency = (from x in doc.DocumentNode.Descendants()
+                itemprop_pricecurrency = (from x in doc.DocumentNode.Descendants()
                                          where x.Name.ToLower() == "meta"
                                          && x.Attributes["itemprop"] != null
                                          && x.Attributes["itemprop"].Value.ToLower() == "pricecurrency"
                                          select x.Attributes["content"].Value).FirstOrDefault();
 
+                #endregion
 
-              
+
                 /*********************************/
                 /* Clean and prepare data */
 
@@ -122,9 +141,9 @@ namespace ToyalistAPI.Controllers
                 imgs = imgs.Distinct().ToList();
 
                 //Vire les url qui ne comporte pas d'extension image : .png, .jpg, .jpeg, .gif, .svg
-                imgs = (from x in imgs
-                        where x.Contains(".jpg") || x.Contains(".jpeg") || x.Contains(".png") || x.Contains(".gif") || x.Contains(".svg")
-                        select x).ToList();
+                //imgs = (from x in imgs
+                //        where x.Contains(".jpg") || x.Contains(".jpeg") || x.Contains(".png") || x.Contains(".gif") || x.Contains(".svg")
+                //        select x).ToList();
 
                 //Filtre et classe les images par son poids en octet
                 long minimumImageSize = long.Parse(ConfigurationManager.AppSettings["minimumImageSize"]);
@@ -258,26 +277,24 @@ namespace ToyalistAPI.Controllers
 
                 /*********************************/
                 /* Send response */
-
                 string json = JsonConvert.SerializeObject(htmlContent);
-
-                //StringContent cleanJson = new StringContent(json, System.Text.Encoding.UTF8, "application/json"); //Enleve les backslash dans le contenu de la réponse string
-                
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json")
-                };
-
+                return new HttpResponseMessage()  { Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json") };
                 //return Ok(cleanJson);
+
+
+                /*END*/
             }
             catch (Exception ex)
             {
                 //return BadRequest(ex.Message);
-                string jsonError = "{ 'error' : '" + ex.Message + "'}";
-                return new HttpResponseMessage(HttpStatusCode.BadRequest)
-                {
-                    Content = new StringContent(ex.Message)
-                };
+                string errorMsg = ex.Message.Replace("'","").Replace(":", "").Replace("\"", "");
+                string jsonError = "{ \"message\" : \"" + errorMsg + "\" , \"urlcrawled\" : \"" + url + "\" }";
+
+                HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                httpResponseMessage.Content = new StringContent(jsonError);
+                httpResponseMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                return httpResponseMessage;
             }
 
 

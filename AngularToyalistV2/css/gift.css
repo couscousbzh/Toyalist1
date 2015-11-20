@@ -8,33 +8,47 @@
     clear:both;
 }
 
-*#giftlist h3 {
-    display:inline-block;  
+
+#giftlist h3 {
+    display:block;  
+    margin:0;
+    padding: 0;
 }
 
-
-*#giftlist h2 {
-    display:inline-block;
-}
-
-*#giftlist .right {
+#giftlist .right {
     float: right;
 }
 
 
 
-*#giftlist .title {
-    max-width: 500px;
+#giftlist .title {
+    margin:0;
+    padding: 0;
+    /*max-width: 500px;
     text-overflow:ellipsis;
-    overflow:hidden;    
-    
+    overflow:hidden;*/        
 }
 
-*#giftlist #prix {
-   position:relative;
+#giftlist .prix h3 {
+   color:#3CADD4 ;
    float:right;
-   top:0;
+
 }
+
+#giftlist .linktoshop {
+    margin:0;
+    padding: 0;
+    display:block;
+}
+
+#giftlist .description {
+    margin:0;
+    padding-top: 10px;
+    display:block;
+    font-style:italic;
+}
+
+
 
 
 #giftlist ul {

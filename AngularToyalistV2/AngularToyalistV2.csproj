@@ -66,6 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="elements.html" />
+    <Content Include="generic.html" />
+    <Content Include="images\ajax-loader.gif" />
     <Content Include="images\no-thumb.png" />
     <Content Include="js\giftFilters.js" />
     <Content Include="js\giftDirective.js" />

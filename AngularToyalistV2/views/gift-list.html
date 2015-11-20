@@ -1,114 +1,114 @@
 ﻿<!--begin gift-list.html-->
 
-
-
-<form ng-submit="megaCrawlURL()" name="formMegaCrawlUrl">
-    <button class="button icon fa-plus" type="submit">Add multi Urls</button>
-</form>
-
-<!--<div class="table-wrapper">
-    <table class="alt">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Item 1</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>Item 2</td>
-                <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                <td>19.99</td>
-            </tr>
-            <tr>
-                <td>Item 3</td>
-                <td> Morbi faucibus arcu accumsan lorem.</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>Item 4</td>
-                <td>Vitae integer tempus condimentum.</td>
-                <td>19.99</td>
-            </tr>
-            <tr>
-                <td>Item 5</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="2"></td>
-                <td>100.00</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>-->
-
-
 <div id="giftlist">
+
+    <button class="button icon fa-trash-o right" ng-click="removeAll()">Remove all</button>
+    <form ng-submit="megaCrawlURL()" name="formMegaCrawlUrl">
+        <button class="button icon fa-plus" type="submit">Add multi Urls</button>
+    </form>
+    <div class="clear"></div>
+
+
     <ul>
         <li ng-repeat="gift in gifts">
-            
-            <span class="image left">               
+
+            <span class="image left">
                 <a href="{{gift.imageURL}}" target="_blank">
                     <img ng-src="{{gift.imageURL}}">
                 </a>
             </span>
 
-            <h3 id="prix">{{gift.price}} {{gift.currency}}</h3>
+            <div class="prix">
+                <h3>{{gift.price}} {{gift.currency}}</h3>
+            </div>
 
             <div class="title">
                 <a href="{{gift.url}}" target="_blank">
-                    <h3>{{gift.id}} - {{gift.name | setMaxTitleLength:20 }} </h3>
+                    <h3>{{gift.id}} - {{gift.name | filterMaxTitleLength:35 }} </h3>
                 </a>
             </div>
+            <div class="linktoshop">
+                <a href="{{gift.url}}" target="_blank">{{gift.url | filterDomain}}</a>
+            </div>
 
-           
+            <div class="description">
+                <p>{{gift.description}}</p>
+            </div>
 
-            <!--<div class="clear"></div>-->
 
-            <p>Desc {{gift.description}}</p>
-
-            <div class="imageFromCrawl">
+            <!--<div class="imageFromCrawl">
                 <div ng-repeat="image in gift.imagesURL">
                     <a href="{{image}}" target="_blank">
                         <img ng-src="{{image}}" width="50">
                     </a>
                 </div>
-            </div>
+            </div>-->
 
             <a ng-click="deleteGift(gift.id, $index)" class="optionItem"><i class="fa fa-trash-o"></i> Delete this gift</a>
 
-        </li>
+</li>
     </ul>
+
+
+    <!--Bottom boutons-->
+    <table>
+        <tr>
+            <td>
+                <form ng-submit="addNewGift()" name="formAddGift">
+
+                    <label for="name">Name: </label>
+                    <input id="name" type="text" placeholder="donnez moi un nom" ng-model="newGiftName">
+
+                    <button class="button icon fa-plus" type="submit">Add</button>
+
+                </form>
+            </td>
+            <td>
+                <form ng-submit="crawlURL()" name="formCrawlUrl">
+
+                    <label for="url">URL: </label>
+                    <input id="url" type="text" placeholder="donnez moi une url" ng-model="urlToGet">
+
+                    <button class="button icon fa-plus" type="submit">Add</button>
+
+                </form>
+
+
+            </td>
+        </tr>
+    </table>
+
+
+    <!--<button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.banggood.com/fr/Digital-Laser-Distance-Meter-Rangefinder-Measure-Diastimeter-40m-50m-60m-70m-80m-100m-optional-p-1009122.html')">Banggood Gift</button>-->
+
+
+    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.amazon.fr/gp/product/B013GRHYUW/ref=br_asw_pdt-2/280-3197474-9607032?pf_rd_m=A1X6FK5RDHNB96')">Amazon Gift</button>
+    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.cdiscount.com/auto/huiles-additifs/bardahl-nettoyant-injecteurs-diesel-1l/f-13373-bar3266720115517.html#mpos=1|cd')">CDiscount Gift</button>
+    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.decathlon.fr/vtt-rockrider-500-id_8293150.html')">Decathlon Gift</button>
+    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.ikea.com/fr/fr/catalog/products/50193256')">Ikea Gift</button>
+    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.priceminister.com/offer/buy/223727295/baby-foot-calcio.html?gclid=CJ_20baGn8kCFU-3GwodAtIHUA#sort=0&filter=10&bbaid=652942720&xtatc=PUB-%5Bggp%5D-%5BEnfant%5D-%5Bjeux-cafe%5D-%5B223727295%5D-%5Bneuf%5D-%5Brdvdeco%5D&t=&ptnrid=s9V1S5FxD_dc|pcrid|53687075363|pkw||pmt|&ja1=tsid:67590|cid:287443283|agid:14497925483|tid:kwd-90083637443|crid:53687075363|nw:g|rnd:11301557471419984015|dvc:c|adp:1o2')">PriceMinister Gift</button>
+    
+    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.boulanger.com/ref/1051658')">Boulanger Gift</button>
+    <!--<button class="button icon fa-plus" ng-click="addPredifinedGift('')">Ikea Gift</button>
+    <button class="button icon fa-plus" ng-click="addPredifinedGift('')">Ikea Gift</button>-->
+
+    <br /><br />
+
+
+    <div id="taskinprogess">
+        <div ng-repeat="task in tasks">
+            <img ng-src="/images/ajax-loader.gif" height="20">
+            <a href="{{task}}" target="_blank">
+                <span>{{task | filterMaxTitleLength:50}}</span>
+            </a>
+        </div>
+    </div>
+
 </div>
 
 
-<form ng-submit="addNewGift()" name="formAddGift">
-
-        <label for="name">Name: </label>
-        <input id="name" type="text" placeholder="donnez moi un nom" ng-model="newGiftName">
-
-        <button class="button icon fa-plus" type="submit">Add</button>
-
-</form>
 
 
-<form ng-submit="crawlURL()" name="formCrawlUrl">
-
-    <label for="url">URL: </label>
-    <input id="url" type="text" placeholder="donnez moi une url" ng-model="urlToGet">
-
-    <button class="button icon fa-plus" type="submit">Add</button>
-
-</form>
 
 
 

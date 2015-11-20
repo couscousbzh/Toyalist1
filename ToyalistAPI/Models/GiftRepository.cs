@@ -50,7 +50,8 @@ namespace ToyalistAPI.Models
             {
                 new Gift {
                     Id = 1,
-                    Name = "Poupé",
+                    Url = "http://www.auchan.fr/mattel-barbie-robe-de-mariee/p-c377746",
+            Name = "Poupée",
                     Price = "13",
                     Currency =  "$",
                     Description =  "Fusce vitae sodales nunc. Nullam vehicula nulla sed ligula sodales, vel tincidunt lorem condimentum. Cras rhoncus molestie mollis. Suspendisse. ",
@@ -58,6 +59,7 @@ namespace ToyalistAPI.Models
                 },
                 new Gift {
                     Id = 2,
+                    Url = "http://www.oxybul.com/jeux-d-imagination/circuits-voitures-et-trains/circuits/circuit-de-voiture-3d-infrarouge-frequence-a/produit/313117",
                     Name = "Circuit",
                     Price = "70",
                     Currency =  "€",
@@ -66,6 +68,7 @@ namespace ToyalistAPI.Models
                 },
                 new Gift {
                     Id = 3,
+                    Url = "http://www.priceminister.com/offer/buy/223727295/baby-foot-calcio.html?gclid=CJ_20baGn8kCFU-3GwodAtIHUA#sort=0&filter=10&bbaid=652942720&xtatc=PUB-%5Bggp%5D-%5BEnfant%5D-%5Bjeux-cafe%5D-%5B223727295%5D-%5Bneuf%5D-%5Brdvdeco%5D&t=&ptnrid=s9V1S5FxD_dc|pcrid|53687075363|pkw||pmt|&ja1=tsid:67590|cid:287443283|agid:14497925483|tid:kwd-90083637443|crid:53687075363|nw:g|rnd:11301557471419984015|dvc:c|adp:1o2",
                     Name = "Baby Foot",
                     Price = "9.99",
                     Currency =  "€",
