@@ -20,5 +20,7 @@ namespace ToyalistAPI.Models
         public string Description { get; set; }
         public string ImageURL { get; set; }
 
+        public List<String> ImagesURL { get; set; }
+
     }
 }

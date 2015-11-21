@@ -93,14 +93,7 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, Craw
         );            
     }
     
-    function RemoveItemInArray(array, search_term) {
-        for (var i = array.length - 1; i >= 0; i--) {
-            if (array[i] === search_term) {
-                array.splice(i, 1);
-                break;       //<-- Uncomment  if only the first term has to be removed
-            }
-        }
-    }
+    
 
 
     function MakeNewGift(htmlContent) {
@@ -114,8 +107,10 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, Craw
         myNewgift.description = htmlContent.description;
         myNewgift.imageURL = htmlContent.mainImageURL;
         myNewgift.imagesURL = htmlContent.imagesURL;
-       
+
         /*************************************/
+
+        //console.log(myNewgift);
 
         //Cree un objet giftDTO, Angular va gérer en Restfull la création grace a $resource.
         var giftDTOCreated = GiftDTO.create(myNewgift, function () {
@@ -193,6 +188,73 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, Craw
     //$scope.gifts.push(fakeGift);
 
 });
+
+
+
+
+giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams, GiftDTO, CrawlerService)
+{
+    //Load data from API
+    $scope.gift = GiftDTO.get({ giftId: $routeParams.giftId });
+
+    $scope.update = function () {
+        //console.log('saving');
+        GiftDTO.update({ giftId: $scope.gift.id }, $scope.gift, function () {
+            //console.log('saved');
+        });
+    }
+
+
+    $scope.removeImage = function (imageurl) {
+        console.log('removeImage');
+
+        RemoveItemInArray($scope.gift.imagesURL, imageurl);
+
+    }
+
+
+    $scope.makeDefaultImage = function (imageurl) {
+        console.log('makeDefaultImage');
+
+        var oldMainImage = $scope.gift.imageURL;
+
+        $scope.gift.imageURL = imageurl;
+
+        RemoveItemInArray($scope.gift.imagesURL, imageurl);
+
+        $scope.gift.imagesURL.push(oldMainImage);
+
+    }
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+function RemoveItemInArray(array, search_term) {
+    for (var i = array.length - 1; i >= 0; i--) {
+        if (array[i] === search_term) {
+            array.splice(i, 1);
+            break;       //<-- Uncomment  if only the first term has to be removed
+        }
+    }
+}
+
+
+
+
+
+
+
 
 
 

@@ -1,12 +1,14 @@
 ﻿
+.clear {
+    clear:both;
+}
+
+
 
 #giftlist {
     margin: auto;
 }
 
-#giftlist .clear {
-    clear:both;
-}
 
 
 #giftlist h3 {
@@ -18,7 +20,6 @@
 #giftlist .right {
     float: right;
 }
-
 
 
 #giftlist .title {
@@ -47,8 +48,6 @@
     display:block;
     font-style:italic;
 }
-
-
 
 
 #giftlist ul {
@@ -94,6 +93,8 @@
 
 #giftlist .optionItem {
     float: right;
+    padding-left: 15px;
+    vertical-align:bottom;
 }
 
 
@@ -106,4 +107,76 @@
     display:block;
     margin: 0 15px 0 0;
 }
+
+
+/*GIFT EDIT*/
+
+#giftEdit {
+   margin: 0;
+}
+
+#giftEdit label {
+    margin: 0;
+    display: inline-block;
+}
+
+#giftEdit input, textarea {
+    margin: 0;
+    display: block;
+}
+
+
+
+#giftEdit .mainimage img {
+    max-width: 300px;
+}
+
+#giftEdit .additionalimages img {
+
+}
+
+#giftEdit .additionalimages ul {
+    margin: 10px 0 0 0 ;
+    padding: 0;
+}
+
+#giftEdit .additionalimages li {    
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px 10px 0;
+}
+
+#giftEdit .additionalimages .imgBox {    
+    display: block;
+    width: 100px;
+    min-height: 100px;
+}
+
+#giftEdit .additionalimages .imgBox img{    
+    display: inline-block;
+    width: 100px;   
+}
+
+ #giftEdit .additionalimages .imgBox .miniBox {    
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    background-color:#ddd;
+}
+
+ #giftEdit .additionalimages .imgBox .miniBox #miniButtonLeft {    
+    padding-left: 5px;
+}
+ 
+ #giftEdit .additionalimages .imgBox .miniBox #miniButtonRight {    
+    float:right; 
+    padding-right: 5px;
+}
+
+
+
+ 
+
 

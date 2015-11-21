@@ -161,8 +161,8 @@ namespace ToyalistAPI.Controllers
                     }
                     catch {
                         //Dans l'éventualité ou le crawler n'a pas accès à la ressource image (403), filtre distant, IP ou raison inconnue... 
-                        //on l'ajoute quand meme.
-                        imgsDicFiltered.Add(img, 0);
+                        
+                        //imgsDicFiltered.Add(img, 0);
                     }
                 }
                 //Classe la liste des images par ordre de poids, de la plus grosse a la plus petite

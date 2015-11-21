@@ -36,16 +36,18 @@
             </div>
 
 
-            <!--<div class="imageFromCrawl">
+            <div class="imageFromCrawl">
                 <div ng-repeat="image in gift.imagesURL">
                     <a href="{{image}}" target="_blank">
                         <img ng-src="{{image}}" width="50">
                     </a>
                 </div>
-            </div>-->
+            </div>
 
             <a ng-click="deleteGift(gift.id, $index)" class="optionItem"><i class="fa fa-trash-o"></i> Delete this gift</a>
 
+            <a href="#/gifts/{{gift.id}}" class="optionItem"><i class="fa fa-pencil-square-o"></i> Edit this gift</a>
+           
 </li>
     </ul>
 

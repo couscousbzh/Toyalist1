@@ -1,7 +1,7 @@
 ﻿var giftServiceModule = angular.module('giftServiceModule', [])
 
 
-var environnement = "PROD";
+var environnement = "DEV";
 
 
 var domainAPI;
@@ -19,9 +19,11 @@ var ToyalistURlWebAPI_Crawler = domainAPI + 'api/Crawler';
 giftServiceModule.factory('GiftDTO', ['$resource',
     function ($resource) {
         return $resource(ToyalistURlWebAPI_Gifts, { giftId: '@id' }, {
-            query: { method: 'GET', params: {}, isArray: true },
+            query:  { method: 'GET', params: {}, isArray: true },
+            get:    { method: 'GET' },
             delete: { method: 'DELETE', params: { id: '@id' } },
-            create: { method: 'POST' }
+            create: { method: 'POST' },
+            update: { method: 'PUT' }
         });
     }
 ]);

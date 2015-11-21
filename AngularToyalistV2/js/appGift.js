@@ -10,13 +10,17 @@
 giftApp.config(function ($routeProvider) {
     //console.log('route');
     $routeProvider.
-      when('/', {
-          templateUrl: 'views/gift-list.html',
-          controller: 'GiftListCtrl'
-      }).
-      otherwise({
-          redirectTo: '/'
-      });
+        when('/', {
+            templateUrl: 'views/gift-list.html',
+            controller: 'GiftListCtrl'
+        }).
+        when('/gifts/:giftId', {
+            templateUrl: 'views/gift-edit.html',
+            controller: 'GiftEditCtrl'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
 });
 
 

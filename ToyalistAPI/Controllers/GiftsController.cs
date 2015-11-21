@@ -142,7 +142,7 @@ namespace ToyalistAPI.Controllers
                 return NotFound();                
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return StatusCode(HttpStatusCode.OK);
 
             
         }
