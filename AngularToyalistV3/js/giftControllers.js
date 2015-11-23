@@ -1,6 +1,24 @@
 ﻿var giftControllersModule = angular.module('giftControllersModule', []);
 
-giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, CrawlerService) {
+
+/***********************/
+/*    GiftListEditCtrl     */
+/***********************/
+giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO) {
+
+    /******************************************************/
+    /* LOAD de la liste complete des cadeaux depuis l'API */
+
+    $scope.gifts = GiftDTO.query();
+
+});
+
+
+
+/***********************/
+/*    GiftListEditCtrl     */
+/***********************/
+giftControllersModule.controller('GiftListEditCtrl', function ($scope, GiftDTO, CrawlerService) {
 
     //$scope.$watch('gifts', function () {
     //    console.log('gifts changed');
@@ -190,8 +208,9 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO, Craw
 });
 
 
-
-
+/***********************/
+/*    GiftEditCtrl     */
+/***********************/
 giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams, GiftDTO, CrawlerService)
 {
     //Load data from API
@@ -206,24 +225,17 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
 
 
     $scope.removeImage = function (imageurl) {
-        console.log('removeImage');
-
+        //console.log('removeImage');
         RemoveItemInArray($scope.gift.imagesURL, imageurl);
-
     }
 
 
     $scope.makeDefaultImage = function (imageurl) {
-        console.log('makeDefaultImage');
-
+        //console.log('makeDefaultImage');
         var oldMainImage = $scope.gift.imageURL;
-
         $scope.gift.imageURL = imageurl;
-
         RemoveItemInArray($scope.gift.imagesURL, imageurl);
-
         $scope.gift.imagesURL.push(oldMainImage);
-
     }
 
 
@@ -232,12 +244,44 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
 });
 
 
+/***********************/
+/*    LoginCtrl        */
+/***********************/
+giftControllersModule.controller('LoginCtrl', function ($scope, $http, UserService)
+{
+    scope.login = function() {
+        // configuration object
+        var config = { /* ... */ }
+
+        console.log('login in...');
+
+        $http(config)
+        .success(function (data, status, headers, config) {
+            console.log('login sucess');
+            if (data.status) {
+                // succefull login                
+                User.isLogged = true;
+                User.username = data.username;
+            }
+            else {
+                User.isLogged = false;
+                User.username = '';
+            }
+        })
+        .error(function (data, status, headers, config) {
+            console.log('login error');
+            User.isLogged = false;
+            User.username = '';
+        });
+    }
+
+});
 
 
 
-
-
-
+/***********************/
+/*    HELPERS          */
+/***********************/
 
 
 function RemoveItemInArray(array, search_term) {

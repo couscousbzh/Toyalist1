@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToyalistAPIV1.Models
+namespace ToyalistAPIV2.Models
 {
     public class GiftRepository : IGiftRepository
     {

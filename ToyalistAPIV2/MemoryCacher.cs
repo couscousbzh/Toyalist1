@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Runtime.Caching;
 
-namespace ToyalistAPIV1
+namespace ToyalistAPIV2
 { 
 
     public class MemoryCacher

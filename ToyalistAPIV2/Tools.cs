@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 
 
-namespace ToyalistAPIV1
+namespace ToyalistAPIV2
 {
     public class Tools
     {

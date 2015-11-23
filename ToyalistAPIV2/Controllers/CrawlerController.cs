@@ -13,11 +13,11 @@ using System.Web.Http.Cors;
 using System.Web;
 using System.Configuration;
 
-using ToyalistAPIV1.Models;
+using ToyalistAPIV2.Models;
 using System.Text.RegularExpressions;
 using System.Net.Http.Headers;
 
-namespace ToyalistAPIV1.Controllers
+namespace ToyalistAPIV2.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CrawlerController : ApiController

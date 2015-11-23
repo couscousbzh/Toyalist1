@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.Serialization;
 
-namespace ToyalistAPIV1.Models
+namespace ToyalistAPIV2.Models
 {
    
     public class Gift

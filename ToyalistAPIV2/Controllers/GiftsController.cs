@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 
 using System.Web.Http.Cors;
-using ToyalistAPIV1.Models;
+using ToyalistAPIV2.Models;
 
-namespace ToyalistAPIV1.Controllers
+namespace ToyalistAPIV2.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GiftsController : ApiController

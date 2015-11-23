@@ -9,16 +9,27 @@
 
 giftApp.config(function ($routeProvider) {
     //console.log('route');
-    $routeProvider.
-        when('/', {
+    $routeProvider
+        .when('/', {
             templateUrl: 'views/gift-list.html',
             controller: 'GiftListCtrl'
-        }).
-        when('/gifts/:giftId', {
+        })
+        .when('/listedit', {
+            templateUrl: 'views/gift-list-edit.html',
+            controller: 'GiftListEditCtrl'
+        })
+        .when('/gifts/:giftId', {
             templateUrl: 'views/gift-edit.html',
             controller: 'GiftEditCtrl'
-        }).
-        otherwise({
+        })
+        .when('/login', { 
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl',
+            access: {
+                isFree: true
+            }
+        })
+        .otherwise({
             redirectTo: '/'
         });
 });
