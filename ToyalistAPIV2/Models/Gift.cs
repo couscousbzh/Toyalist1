@@ -13,6 +13,7 @@ namespace ToyalistAPIV2.Models
     {
  
         public int Id { get; set; }
+        public string Sid { get; set; }
 
         public string GiftListSid { get; set; }
         
@@ -24,6 +25,8 @@ namespace ToyalistAPIV2.Models
         public string ImageURL { get; set; }
 
         public List<String> ImagesURL { get; set; }
+
+        public List<String> BuyersName { get; set; }
 
     }
 }

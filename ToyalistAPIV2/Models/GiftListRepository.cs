@@ -32,7 +32,7 @@ namespace ToyalistAPIV2.Models
             {
                 throw new ArgumentNullException("item");
             }
-            //item.Id = _nextId++;
+            item.Sid = Tools.GetRandomKey();
             allGiftList.Add(item);
             return item;
         }

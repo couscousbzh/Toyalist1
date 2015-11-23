@@ -138,6 +138,7 @@ namespace ToyalistAPIV2.Models
                 throw new ArgumentNullException("item");
             }
             item.Id = _nextId++;
+            item.Sid = Tools.GetRandomKey();
             gifts.Add(item);
             return item;
         }
