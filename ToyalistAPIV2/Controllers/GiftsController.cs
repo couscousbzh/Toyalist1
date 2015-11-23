@@ -53,35 +53,26 @@ namespace ToyalistAPIV2.Controllers
         [HttpGet]
         public IEnumerable<Gift> GetAllGifts()
         {
-            //RefreshData();
-
-            //return dataList;
-
             return repository.GetAll();
         }
-              
+
+        [HttpGet]
+        public IEnumerable<Gift> GetGifts(string sid)
+        {
+            return repository.Get(sid);
+        }
 
         [HttpGet]
         public IHttpActionResult GetGift(int id)
         {
-            //RefreshData();
-
-            //var gift = dataList.FirstOrDefault((p) => p.Id == id);
-            //if (gift == null)
-            //{
-            //    return NotFound();
-            //}
-            //return Ok(gift);
-
             Gift item = repository.Get(id);
             if (item == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return Ok(item);
-
-            //return CreatedAtRoute("DefaultApi", new { id = product.ProductId }, product);
+            return Ok(item);           
         }
+
 
         [HttpPost]
         public async Task<IHttpActionResult> Post(Gift gift)
@@ -105,6 +96,8 @@ namespace ToyalistAPIV2.Controllers
             {
                 throw ex;
             }
+
+            //return CreatedAtRoute("DefaultApi", new { id = product.ProductId }, product);
         }
 
         [HttpPut]

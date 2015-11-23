@@ -20,7 +20,8 @@ var ToyalistURlWebAPI_Crawler = domainAPI + 'api/Crawler';
 giftServiceModule.factory('GiftDTO', ['$resource',
     function ($resource) {
         return $resource(ToyalistURlWebAPI_Gifts, { id: '@id' }, {
-            query:  { method: 'GET', params: {}, isArray: true },
+            query: { method: 'GET', params: {}, isArray: true },
+            query: { method: 'GET', params: { sid: '@id' }, isArray: true },
             get:    { method: 'GET' },
             delete: { method: 'DELETE', params: { id: '@id' } },
             create: { method: 'POST' },
@@ -31,7 +32,7 @@ giftServiceModule.factory('GiftDTO', ['$resource',
 
 giftServiceModule.factory('ListDTO', ['$resource',
     function ($resource) {
-        return $resource(ToyalistURlWebAPI_Lists, { id: '@id' }, {
+        return $resource(ToyalistURlWebAPI_Lists, { sid: '@id' }, {
             query: { method: 'GET', params: {}, isArray: true },
             get: { method: 'GET' }
             //delete: { method: 'DELETE', params: { id: '@id' } },

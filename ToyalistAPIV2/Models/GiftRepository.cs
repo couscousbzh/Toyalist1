@@ -121,6 +121,11 @@ namespace ToyalistAPIV2.Models
             return gifts;
         }
 
+        public IEnumerable<Gift> Get(string sid)
+        {
+            return gifts.Select(p => p).Where(x => x.GiftListSid == sid).ToList(); 
+        }
+
         public Gift Get(int id)
         {
             return gifts.Find(p => p.Id == id);

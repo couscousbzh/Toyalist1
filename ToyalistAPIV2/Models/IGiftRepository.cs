@@ -9,7 +9,9 @@ namespace ToyalistAPIV2.Models
     public interface IGiftRepository
     {
         IEnumerable<Gift> GetAll();
-        //IEnumerable<GiftList> Get(string id);
+
+        IEnumerable<Gift> Get(string sid);
+
         Gift Get(int id);
         Gift Add(Gift item);
         void Remove(int id);

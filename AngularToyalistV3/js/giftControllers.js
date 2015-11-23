@@ -9,12 +9,12 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams,
     console.log('GiftListCtrl');
 
     /******************************************************/
-    /* LOAD de la liste complete des cadeaux depuis l'API */
+    /* LOAD de la liste principale puis la liste complete des cadeaux depuis l'API */
     //console.log($routeParams.giftlistsid);
 
-    $scope.list = ListDTO.get({ id: $routeParams.giftlistsid });
+    $scope.list = ListDTO.get({ sid: $routeParams.giftlistsid });
+    $scope.gifts = GiftDTO.query({ sid: $routeParams.giftlistsid });
 
-    //$scope.gifts = GiftDTO.query();
 });
 
 
