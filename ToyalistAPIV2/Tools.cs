@@ -13,7 +13,7 @@ namespace ToyalistAPIV2
     {
         public static long GetImageSize(string url)
         {
-            try
+            try 
             {
                 HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(url);
                 req.Method = "HEAD";
