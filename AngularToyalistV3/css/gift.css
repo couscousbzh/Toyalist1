@@ -1,0 +1,182 @@
+﻿
+.clear {
+    clear:both;
+}
+
+
+
+#giftlist {
+    margin: auto;
+}
+
+
+
+#giftlist h3 {
+    display:block;  
+    margin:0;
+    padding: 0;
+}
+
+#giftlist .right {
+    float: right;
+}
+
+
+#giftlist .title {
+    margin:0;
+    padding: 0;
+    /*max-width: 500px;
+    text-overflow:ellipsis;
+    overflow:hidden;*/        
+}
+
+#giftlist .prix h3 {
+   color:#3CADD4 ;
+   float:right;
+
+}
+
+#giftlist .linktoshop {
+    margin:0;
+    padding: 0;
+    display:block;
+}
+
+#giftlist .description {
+    margin:0;
+    padding-top: 10px;
+    display:block;
+    font-style:italic;
+}
+
+
+#giftlist ul {
+    list-style-type: none;
+}
+
+#giftlist li img {
+    float: left;
+    margin: 0 15px 0 0;
+    /*max-width: 150px;*/
+    width: 150px;
+}
+
+#giftlist li p {
+    /*font: 200 12px/1.5 Georgia, Times New Roman, serif;*/
+    text-align: justify
+}
+
+#giftlist li {
+    background: #eee;
+    margin-top: 10px;
+    padding: 10px;
+    overflow: auto;
+}
+
+#giftlist li:nth-child(odd)  {
+    background: #fff;
+    margin-top: 10px;
+    padding: 10px;
+    overflow: auto;
+}
+
+
+#giftlist li:hover {
+    background: #ddd;
+    /*cursor: pointer;*/
+}
+
+#giftlist a {   
+    cursor: pointer;
+}
+
+
+#giftlist .optionItem {
+    float: right;
+    padding-left: 15px;
+    vertical-align:bottom;
+}
+
+
+#giftlist .imageFromCrawl {
+    /*clear:both;*/
+}
+
+#giftlist .imageFromCrawl img {
+    width: 75px;
+    display:block;
+    margin: 0 15px 0 0;
+}
+
+
+/*GIFT EDIT*/
+
+#giftEdit {
+   margin: 0;
+}
+
+#giftEdit label {
+    margin: 0;
+    display: inline-block;
+}
+
+#giftEdit input, textarea {
+    margin: 0;
+    display: block;
+}
+
+
+
+#giftEdit .mainimage img {
+    max-width: 300px;
+}
+
+#giftEdit .additionalimages img {
+
+}
+
+#giftEdit .additionalimages ul {
+    margin: 10px 0 0 0 ;
+    padding: 0;
+}
+
+#giftEdit .additionalimages li {    
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px 10px 0;
+}
+
+#giftEdit .additionalimages .imgBox {    
+    display: block;
+    width: 100px;
+    min-height: 100px;
+}
+
+#giftEdit .additionalimages .imgBox img{    
+    display: inline-block;
+    width: 100px;   
+}
+
+ #giftEdit .additionalimages .imgBox .miniBox {    
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    background-color:#ddd;
+}
+
+ #giftEdit .additionalimages .imgBox .miniBox #miniButtonLeft {    
+    padding-left: 5px;
+}
+ 
+ #giftEdit .additionalimages .imgBox .miniBox #miniButtonRight {    
+    float:right; 
+    padding-right: 5px;
+}
+
+
+
+ 
+
+

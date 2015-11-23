@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularToyalistV1", "Angula
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularToyalistV2", "AngularToyalistV2\AngularToyalistV2.csproj", "{50560E6A-CB03-415F-9D46-3647444A6DEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularToyalistV3", "AngularToyalistV3\AngularToyalistV3.csproj", "{05A2639B-48FF-4917-B34A-EB17F6BF3888}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{50560E6A-CB03-415F-9D46-3647444A6DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50560E6A-CB03-415F-9D46-3647444A6DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50560E6A-CB03-415F-9D46-3647444A6DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A2639B-48FF-4917-B34A-EB17F6BF3888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A2639B-48FF-4917-B34A-EB17F6BF3888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A2639B-48FF-4917-B34A-EB17F6BF3888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A2639B-48FF-4917-B34A-EB17F6BF3888}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

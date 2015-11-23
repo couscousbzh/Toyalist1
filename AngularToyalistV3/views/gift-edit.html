@@ -1,0 +1,89 @@
+﻿
+
+<div id="giftEdit">
+
+    <form name="giftForm" novalidate>
+
+
+        <a href="/"><i class="fa fa-arrow-circle-left"></i> Back</a>
+        <br /><br />
+
+
+
+
+        <label for="Titre">Titre : </label>
+        <input type="text" name="Titre" ng-model="gift.name" required>
+        <p class="help-block" ng-show="gift.name.$invalid">Un titre est nécessaire</p>
+
+
+        <label for="Description">Description : </label>
+        <textarea name="Description" id="Description" placeholder="Enter your message" rows="4" ng-model="gift.description"></textarea>
+
+
+        <div class="row uniform 50%">
+            <div class="6u 12u$(4)">
+                <label for="Price">Prix</label>
+                <input type="text" class="priceInput" name="Price" ng-model="gift.price" required>
+                <p class="help-block" ng-show="gift.price.$invalid">Un prix est nécessaire</p>
+            </div>
+            <div class="6u$ 12u$(4)">
+                <label for="Currency">Monnaie</label>
+                <!--<div class="select-wrapper">
+                    <select name="category" id="category" ng-model="gift.currency">
+                        <option selected value="€">€ euros</option>
+                        <option value="$">$ dollars</option>
+                        <option value="£">£ livres</option>
+                    </select>
+                </div>-->
+                <input type="text" class="priceInput" name="Price" ng-model="gift.currency" required>
+                <p class="help-block" ng-show="gift.currency.$invalid">Une monnaie est nécessaire</p>
+            </div>
+        </div>
+
+        <label for="Url">Url : </label>
+        <input type="text" name="Url" ng-model="gift.url" required>
+        <p class="help-block" ng-show="gift.url.$invalid">Une url est nécessaire</p>
+
+
+        <div class="row uniform 50%">
+            <div class="6u 12u$(4)">
+                <div class="mainimage">
+                    <label>Image principale : </label>
+                    <span class="image fit"><img ng-src="{{gift.imageURL}}"></span>
+                </div>
+            </div>
+            <div class="6u$ 12u$(4)">
+                <label>Image secondaires : </label>
+                <div class="additionalimages">
+                    <ul>
+                        <li ng-repeat="image in gift.imagesURL">
+
+                            <div class="imgBox">
+                                <img class="image" ng-src="{{image}}" width="50">
+                                <div class="miniBox">
+
+                                    <a href="" id="miniButtonRight" ng-click="removeImage(image)">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+
+                                    <a href="" id="miniButtonLeft" ng-click="makeDefaultImage(image)">
+                                        <i class="fa fa-arrow-circle-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <input type="submit" ng-click="update()" value="Enregistrer" />
+
+
+        
+    </form>
+</div>
+
