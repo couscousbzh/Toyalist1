@@ -1,5 +1,7 @@
 ﻿<!--begin gift-list.html-->
 
+<h1>Liste de cadeaux de : {{list.name}} - {{list.sid}}</h1>
+
 <div id="giftlist">
     <ul>
         <li ng-repeat="gift in gifts">
@@ -37,11 +39,11 @@
             </div>
 
             
-            <!--<a href="#/gifts/{{gift.id}}" class="optionItem"><i class="fa fa-pencil-square-o"></i> Edit this gift</a>-->
+            <a href="#/gifts/{{gift.id}}" class="optionItem"><i class="fa fa-pencil-square-o"></i> Edit this gift</a>
            
         </li>
     </ul>
-
+</div>
 
 
 

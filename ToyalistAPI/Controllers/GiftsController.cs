@@ -59,17 +59,7 @@ namespace ToyalistAPIV1.Controllers
 
             return repository.GetAll();
         }
-
-        [HttpGet]
-        public IEnumerable<Gift> GetAllGifts([FromUri] string giftlistid)
-        {
-            //RefreshData();
-
-            //return dataList;
-
-            return repository.GetAll();
-        }
-
+        
         [HttpGet]
         public IHttpActionResult GetGift(int id)
         {

@@ -11,10 +11,17 @@ giftApp.config(function ($routeProvider) {
     //console.log('route');
     $routeProvider
         .when('/', {
+            templateUrl: 'views/main.html'
+        })
+        //.when('/lists/', {
+        //    templateUrl: 'views/gift-list.html',
+        //    controller: 'GiftListCtrl'
+        //})
+        .when('/lists/:giftlistsid', {
             templateUrl: 'views/gift-list.html',
             controller: 'GiftListCtrl'
         })
-        .when('/listedit', {
+        .when('/lists/edit/:giftlistsid', {
             templateUrl: 'views/gift-list-edit.html',
             controller: 'GiftListEditCtrl'
         })

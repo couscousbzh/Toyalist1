@@ -2,22 +2,27 @@
 
 
 /***********************/
-/*    GiftListEditCtrl     */
+/*    GiftListCtrl     */
 /***********************/
-giftControllersModule.controller('GiftListCtrl', function ($scope, GiftDTO) {
+giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams, ListDTO, GiftDTO) {
+    
+    console.log('GiftListCtrl');
 
     /******************************************************/
     /* LOAD de la liste complete des cadeaux depuis l'API */
+    //console.log($routeParams.giftlistsid);
 
-    $scope.gifts = GiftDTO.query();
+    $scope.list = ListDTO.get({ id: $routeParams.giftlistsid });
 
+    //$scope.gifts = GiftDTO.query();
 });
 
 
 
 /***********************/
-/*    GiftListEditCtrl     */
+/*    GiftListEditCtrl */
 /***********************/
+/*Edit de liste de cadeau pour un contributeur*/
 giftControllersModule.controller('GiftListEditCtrl', function ($scope, GiftDTO, CrawlerService) {
 
     //$scope.$watch('gifts', function () {
@@ -211,10 +216,11 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, GiftDTO, 
 /***********************/
 /*    GiftEditCtrl     */
 /***********************/
+/*Edition d'un cadeau */
 giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams, GiftDTO, CrawlerService)
 {
     //Load data from API
-    $scope.gift = GiftDTO.get({ giftId: $routeParams.giftId });
+    $scope.gift = GiftDTO.get({ id: $routeParams.giftId });
 
     $scope.update = function () {
         //console.log('saving');

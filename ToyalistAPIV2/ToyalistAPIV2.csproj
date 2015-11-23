@@ -112,14 +112,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CrawlerController.cs" />
     <Compile Include="Controllers\GiftsController.cs" />
+    <Compile Include="Controllers\GiftListsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MemoryCacher.cs" />
     <Compile Include="Models\Gift.cs" />
     <Compile Include="Models\GiftList.cs" />
+    <Compile Include="Models\GiftListRepository.cs" />
     <Compile Include="Models\GiftRepository.cs" />
     <Compile Include="Models\HtmlContent.cs" />
+    <Compile Include="Models\IGiftListRepository.cs" />
     <Compile Include="Models\IGiftRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools.cs" />
