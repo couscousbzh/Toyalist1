@@ -21,9 +21,9 @@ namespace ToyalistAPIV2.Models
             return allGiftList;
         }
 
-        public GiftList Get(string sid)
+        public GiftList Get(string id)
         {
-            return allGiftList.Find(p => p.Sid == sid);
+            return allGiftList.Find(p => p.Id == id);
         }
 
         public GiftList Add(GiftList item)
@@ -32,14 +32,14 @@ namespace ToyalistAPIV2.Models
             {
                 throw new ArgumentNullException("item");
             }
-            item.Sid = Tools.GetRandomKey();
+            item.Id = Tools.GetRandomKey();
             allGiftList.Add(item);
             return item;
         }
 
-        public void Remove(string  sid)
+        public void Remove(string  id)
         {
-            allGiftList.RemoveAll(p => p.Sid == sid);
+            allGiftList.RemoveAll(p => p.Id == id);
         }
 
         public bool Update(GiftList item)
@@ -48,7 +48,7 @@ namespace ToyalistAPIV2.Models
             {
                 throw new ArgumentNullException("item");
             }
-            int index = allGiftList.FindIndex(p => p.Sid == item.Sid);
+            int index = allGiftList.FindIndex(p => p.Id == item.Id);
             if (index == -1)
             {
                 return false;
@@ -65,7 +65,7 @@ namespace ToyalistAPIV2.Models
             allGiftList = new List<GiftList>();
 
             GiftList giftList1 = new GiftList();
-            giftList1.Sid = "julie1";
+            giftList1.Id = "julie1";
             giftList1.Name = "La liste des cadeaux de Julie";
             //giftList1.Gifts = new List<Gift>
             //{
@@ -101,7 +101,7 @@ namespace ToyalistAPIV2.Models
 
 
             GiftList giftList2 = new GiftList();
-            giftList2.Sid = "leo1";
+            giftList2.Id = "leo1";
             giftList2.Name = "La liste des cadeaux de leo";
             //giftList2.Gifts = new List<Gift>
             //{

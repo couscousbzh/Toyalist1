@@ -57,13 +57,23 @@ namespace ToyalistAPIV2.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Gift> GetGifts(string sid)
+        public IEnumerable<Gift> GetGifts([FromUri]string giftlistid)
         {
-            return repository.Get(sid);
+            //Requete tous les gifts par leur id de liste a laquelle ils appartiennent.
+            IEnumerable<Gift> items = repository.GetByGiftListId(giftlistid);
+            if (items == null || items.Count() == 0)
+            {
+                NotFound(); //retourne un code 200 au lieu d'un 204... tans pis
+
+                //Soit on retourne un objet vide, soit on retourne une réponse HttpResponseMessage avec un code 204 et pas de contenu. 
+                //return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
+            return items;
         }
 
+
         [HttpGet]
-        public IHttpActionResult GetGift(int id)
+        public IHttpActionResult GetGift(string id)
         {
             Gift item = repository.Get(id);
             if (item == null)
@@ -101,7 +111,7 @@ namespace ToyalistAPIV2.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult PutGift(int id, Gift gift)
+        public IHttpActionResult PutGift(string id, Gift gift)
         {
             //gift.Id = id;
             //if (!repository.Update(gift))
@@ -142,7 +152,7 @@ namespace ToyalistAPIV2.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteGift(int id)
+        public IHttpActionResult DeleteGift(string id)
         {
             try
             {

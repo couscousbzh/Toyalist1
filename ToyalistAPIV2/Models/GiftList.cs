@@ -11,7 +11,7 @@ namespace ToyalistAPIV2.Models
    
     public class GiftList
     { 
-        public string Sid { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

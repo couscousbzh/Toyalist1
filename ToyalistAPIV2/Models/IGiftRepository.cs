@@ -10,11 +10,11 @@ namespace ToyalistAPIV2.Models
     {
         IEnumerable<Gift> GetAll();
 
-        IEnumerable<Gift> Get(string sid);
+        IEnumerable<Gift> GetByGiftListId(string id);
 
-        Gift Get(int id);
+        Gift Get(string id);
         Gift Add(Gift item);
-        void Remove(int id);
+        void Remove(string id);
         bool Update(Gift item);
     }
 }

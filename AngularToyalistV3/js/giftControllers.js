@@ -4,36 +4,53 @@
 /***********************/
 /*    GiftListCtrl     */
 /***********************/
-giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams, ListDTO, GiftDTO) {
+giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams, GiftListDTO, GiftDTO) {
     
-    console.log('GiftListCtrl');
-
     /******************************************************/
     /* LOAD de la liste principale puis la liste complete des cadeaux depuis l'API */
     //console.log($routeParams.giftlistsid);
 
-    $scope.list = ListDTO.get({ sid: $routeParams.giftlistsid });
-    $scope.gifts = GiftDTO.query({ sid: $routeParams.giftlistsid });
+    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
+    $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
+});
+
+
+/**************************/
+/*    GiftListNewCtrl     */
+/**************************/
+giftControllersModule.controller('GiftListNewCtrl', function ($scope, $routeParams, $location, GiftListDTO) {
+    
+    $scope.addNewGiftList = function () {
+
+        var myNewGiftList = new GiftListDTO();
+        myNewGiftList.name = giftlistForm.name.value;
+        myNewGiftList.isOwnerTheBeneficary = giftlistForm.isOwnerTheBeneficary.checked;
+        
+        //console.log(myNewGiftList);
+
+        var giftListDTOCreated = GiftListDTO.create(myNewGiftList, function () {
+            //console.log(giftListDTOCreated.id);
+
+            $location.path("/lists/edit/" + giftListDTOCreated.id);
+        });
+    }
 
 });
 
 
-
-/***********************/
-/*    GiftListEditCtrl */
-/***********************/
+/***************************/
+/*    GiftListEditCtrl     */
+/***************************/
 /*Edit de liste de cadeau pour un contributeur*/
-giftControllersModule.controller('GiftListEditCtrl', function ($scope, GiftDTO, CrawlerService) {
+giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routeParams, GiftListDTO, GiftDTO, CrawlerService) {
 
-    //$scope.$watch('gifts', function () {
-    //    console.log('gifts changed');
-    //    console.log($scope.gifts);
-    //});
+    //TODO : faire le check d'un code d'une liste qui n'existe pas. 
 
     /******************************************************/
     /* LOAD de la liste complete des cadeaux depuis l'API */
-
-    $scope.gifts = GiftDTO.query();
+    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
+    $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
+    
     $scope.tasks = [];
     $scope.urlToGet = "";
     
@@ -50,7 +67,8 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, GiftDTO, 
         //console.log($scope.newGiftName);
         
         var myNewgift = new GiftDTO();
-        myNewgift.id = 0;
+        myNewgift.id = "";
+        myNewgift.giftListid = $routeParams.giftlistsid;
         myNewgift.url = '';
         myNewgift.name = formAddGift.name.value;
         myNewgift.price = '0';

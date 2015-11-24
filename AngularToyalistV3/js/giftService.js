@@ -13,7 +13,7 @@ if (environnement == "DEV") {
     domainAPI = "http://localhost:11217/"
 }
 var ToyalistURlWebAPI_Gifts = domainAPI + 'api/gifts/:giftId';
-var ToyalistURlWebAPI_Lists = domainAPI + 'api/giftlists/:giftlistSid';
+var ToyalistURlWebAPI_Lists = domainAPI + 'api/giftlists/:giftlistid';
 var ToyalistURlWebAPI_Crawler = domainAPI + 'api/Crawler';
 
 
@@ -21,7 +21,7 @@ giftServiceModule.factory('GiftDTO', ['$resource',
     function ($resource) {
         return $resource(ToyalistURlWebAPI_Gifts, { id: '@id' }, {
             query: { method: 'GET', params: {}, isArray: true },
-            query: { method: 'GET', params: { sid: '@id' }, isArray: true },
+            query: { method: 'GET', params: { giftlistid: '@id' }, isArray: true },
             get:    { method: 'GET' },
             delete: { method: 'DELETE', params: { id: '@id' } },
             create: { method: 'POST' },
@@ -30,14 +30,14 @@ giftServiceModule.factory('GiftDTO', ['$resource',
     }
 ]);
 
-giftServiceModule.factory('ListDTO', ['$resource',
+giftServiceModule.factory('GiftListDTO', ['$resource',
     function ($resource) {
-        return $resource(ToyalistURlWebAPI_Lists, { sid: '@id' }, {
+        return $resource(ToyalistURlWebAPI_Lists, { id: '@id' }, {
             query: { method: 'GET', params: {}, isArray: true },
-            get: { method: 'GET' }
-            //delete: { method: 'DELETE', params: { id: '@id' } },
-            //create: { method: 'POST' },
-            //update: { method: 'PUT' }
+            get: { method: 'GET' },
+            delete: { method: 'DELETE', params: { id: '@id' } },
+            create: { method: 'POST' },
+            update: { method: 'PUT' }
         });
     }
 ]);

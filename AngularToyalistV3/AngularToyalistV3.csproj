@@ -118,6 +118,7 @@
     <Content Include="js\skel-layers.min.js" />
     <Content Include="js\skel.min.js" />
     <Content Include="views\gift-edit.html" />
+    <Content Include="views\gift-list-new.html" />
     <Content Include="views\gift-list.html" />
     <Content Include="views\gift-list-edit.html" />
     <Content Include="views\login.html" />

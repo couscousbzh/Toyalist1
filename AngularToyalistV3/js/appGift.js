@@ -17,15 +17,19 @@ giftApp.config(function ($routeProvider) {
         //    templateUrl: 'views/gift-list.html',
         //    controller: 'GiftListCtrl'
         //})
-        .when('/lists/:giftlistsid', {
+        .when('/lists/new', {
+            templateUrl: 'views/gift-list-new.html',
+            controller: 'GiftListNewCtrl'
+        })
+        .when('/lists/:giftlistid', {
             templateUrl: 'views/gift-list.html',
             controller: 'GiftListCtrl'
         })
-        .when('/lists/edit/:giftlistsid', {
+        .when('/lists/edit/:giftlistid', {
             templateUrl: 'views/gift-list-edit.html',
             controller: 'GiftListEditCtrl'
         })
-        .when('/gifts/:giftId', {
+        .when('/gifts/:giftid', {
             templateUrl: 'views/gift-edit.html',
             controller: 'GiftEditCtrl'
         })

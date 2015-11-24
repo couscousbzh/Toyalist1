@@ -1,0 +1,23 @@
+﻿
+
+<h3>Créez votre nouvelle liste d'envie</h3>
+
+
+<form name="giftlistForm" ng-submit="addNewGiftList()">
+
+
+    <label for="Titre">Titre : </label>
+    <input type="text" name="name" value="Ma liste de noel"  required>
+    <p class="help-block" ng-show="giftlist.name.$invalid">Un titre est nécessaire</p>
+
+    <input type="checkbox" id="isOwnerTheBeneficary" name="isOwnerTheBeneficary" >
+    <label for="isOwnerTheBeneficary">Je crée cette liste pour offrir à une autre personne</label> <!--<i>Permet d'afficher les noms des personnes qui s'occupe de l'achat d'un cadeau.</i>-->
+
+    <button class="button icon fa-plus" type="submit">Continuer</button>
+
+
+</form>
+
+
+
+
