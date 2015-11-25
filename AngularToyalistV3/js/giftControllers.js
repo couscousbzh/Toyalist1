@@ -1,6 +1,44 @@
 ﻿var giftControllersModule = angular.module('giftControllersModule', []);
 
 
+
+//console.log('log');
+//console.warn('warn');
+//console.debug('debug');
+//console.error('error');
+//console.info('info');
+
+
+
+
+/**************************/
+/*    GiftListNewCtrl     */
+/**************************/
+giftControllersModule.controller('GiftListNewCtrl', function ($scope, $routeParams, $location, GiftListDTO) {
+
+    $scope.addNewGiftList = function () {
+
+        var myNewGiftList = new GiftListDTO();
+        myNewGiftList.name = giftlistForm.name.value;
+        myNewGiftList.isOwnerTheBeneficary = giftlistForm.isOwnerTheBeneficary.checked;
+
+        //console.log(myNewGiftList);
+
+        var giftListDTOCreated = GiftListDTO.create(myNewGiftList,
+            function (success) {
+                //console.log('success : ' + success);
+                $location.path("/lists/edit/" + giftListDTOCreated.id);
+            },
+            function (error) {
+                //console.log('error : ' + error.status);
+                //swal({ title: "Error!", text: "Here's my error message!", type: "error", confirmButtonText: "Ok" });
+            }
+        );
+    }
+
+});
+
+
 /***********************/
 /*    GiftListCtrl     */
 /***********************/
@@ -10,53 +48,55 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams,
     /* LOAD de la liste principale puis la liste complete des cadeaux depuis l'API */
     //console.log($routeParams.giftlistsid);
 
-    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
-    $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
-});
-
-
-/**************************/
-/*    GiftListNewCtrl     */
-/**************************/
-giftControllersModule.controller('GiftListNewCtrl', function ($scope, $routeParams, $location, GiftListDTO) {
+    //$scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
     
-    $scope.addNewGiftList = function () {
+    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid },
+            function (success) {
+                console.log('success : ' + success);               
+            },
+            function (error) {
+                console.log('error : ' + error);
+                swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Cool" });
+            }
+        );
 
-        var myNewGiftList = new GiftListDTO();
-        myNewGiftList.name = giftlistForm.name.value;
-        myNewGiftList.isOwnerTheBeneficary = giftlistForm.isOwnerTheBeneficary.checked;
-        
-        //console.log(myNewGiftList);
-
-        var giftListDTOCreated = GiftListDTO.create(myNewGiftList, function () {
-            //console.log(giftListDTOCreated.id);
-
-            $location.path("/lists/edit/" + giftListDTOCreated.id);
-        });
-    }
-
+    $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
 });
 
 
 /***************************/
 /*    GiftListEditCtrl     */
 /***************************/
-/*Edit de liste de cadeau pour un contributeur*/
-giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routeParams, GiftListDTO, GiftDTO, CrawlerService) {
+/*Edit de liste de cadeau */
+giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routeParams, $location, GiftListDTO, GiftDTO, CrawlerService) {
 
     //TODO : faire le check d'un code d'une liste qui n'existe pas. 
 
     /******************************************************/
     /* LOAD de la liste complete des cadeaux depuis l'API */
-    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
-    $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
+    //$scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
+
+    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid },
+           function (success) {
+               //console.log('success : ' + success.status);
+               if (!$scope.list.name)
+                   swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" },
+                        function () {
+                            //$location.path("/"); //Ne fonctionne pas car swal est en dehors de angular
+                            window.location = '/';
+                        }
+                   );
+               else
+                   $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
+           }
+       );
     
     $scope.tasks = [];
     $scope.urlToGet = "";
     
     $scope.deleteGift = function (giftId, index) {
         GiftDTO.delete({ id: giftId }, function () {
-            //Remove the list on the view
+            //Remove the gift on the view
             $scope.gifts.splice(index, 1);
         });
     };
@@ -64,11 +104,13 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routePar
     $scope.addNewGift = function () {      
 
         //console.log(formAddGift.name.value);
-        //console.log($scope.newGiftName);
+
+        //console.log($scope.list.giftlistid);
+        //console.log($routeParams.giftlistid);
         
         var myNewgift = new GiftDTO();
         myNewgift.id = "";
-        myNewgift.giftListid = $routeParams.giftlistsid;
+        myNewgift.giftListId = $routeParams.giftlistid;
         myNewgift.url = '';
         myNewgift.name = formAddGift.name.value;
         myNewgift.price = '0';
@@ -141,6 +183,7 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routePar
                
         var myNewgift = new GiftDTO();
         myNewgift.id = 0;
+        myNewgift.giftListId = $routeParams.giftlistid;
         myNewgift.url = htmlContent.urlcrawled;
         myNewgift.name = htmlContent.title;
         myNewgift.price = htmlContent.price;
@@ -235,15 +278,16 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routePar
 /*    GiftEditCtrl     */
 /***********************/
 /*Edition d'un cadeau */
-giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams, GiftDTO, CrawlerService)
+giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams, $location, GiftDTO, CrawlerService)
 {
     //Load data from API
-    $scope.gift = GiftDTO.get({ id: $routeParams.giftId });
+    $scope.gift = GiftDTO.get({ id: $routeParams.giftid });
 
     $scope.update = function () {
         //console.log('saving');
         GiftDTO.update({ giftId: $scope.gift.id }, $scope.gift, function () {
             //console.log('saved');
+            $location.path("/lists/edit/" + $scope.gift.giftListId);
         });
     }
 

@@ -45,6 +45,7 @@ namespace ToyalistAPIV2
             string guidString64 = Convert.ToBase64String(g.ToByteArray());
             guidString64 = guidString64.Replace("=", "");
             guidString64 = guidString64.Replace("+", "");
+            guidString64 = guidString64.Replace("/", "");
 
             return guidString64; //exemple "OZVV5TpP4U6wJthaCORZEQ"
         }

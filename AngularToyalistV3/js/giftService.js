@@ -50,7 +50,6 @@ giftServiceModule.factory('UserService', [function () {
     return sdo;
 }])
 
-
 giftServiceModule.service("CrawlerService",
     function ($http, $q) {
 
@@ -102,3 +101,7 @@ giftServiceModule.service("CrawlerService",
         }
     }
 );
+
+
+
+
