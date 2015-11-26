@@ -78,7 +78,7 @@ namespace ToyalistAPIV2.Controllers
             Gift item = repository.Get(id);
             if (item == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                NotFound();
             }
             return Ok(item);           
         }

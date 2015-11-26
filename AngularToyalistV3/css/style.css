@@ -220,6 +220,7 @@
 	}
 
 	input[type="text"],
+    input[type="url"],
 	input[type="password"],
 	input[type="email"],
 	select,
@@ -241,6 +242,7 @@
 	}
 
 		input[type="text"]:invalid,
+        input[type="url"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
 		select:invalid,
@@ -249,6 +251,7 @@
 		}
 
 		input[type="text"]:focus,
+        input[type="url"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		select:focus,
@@ -291,6 +294,7 @@
 		}
 
 	input[type="text"],
+    input[type="url"],
 	input[type="password"],
 	input[type="email"],
 	select {

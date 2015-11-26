@@ -74,6 +74,14 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap-theme.css" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap-theme.min.css" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap.css" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap.min.css" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\js\bootstrap.js" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\js\bootstrap.min.js" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\js\npm.js" />
     <Content Include="plugins\sweetalert\.editorconfig" />
     <Content Include="plugins\sweetalert\.jshintrc" />
     <Content Include="plugins\sweetalert\.travis.yml" />
@@ -86,6 +94,14 @@
     <Content Include="plugins\sweetalert\themes\facebook\facebook.scss" />
     <Content Include="plugins\sweetalert\themes\google\google.scss" />
     <Content Include="plugins\sweetalert\themes\twitter\twitter.scss" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap-theme.css.map" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap.css.map" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap.min.css.map" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="plugins\bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -186,6 +202,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

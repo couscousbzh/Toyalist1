@@ -7,10 +7,10 @@
 
         <a href="/#/lists/edit/{{gift.giftListId}}"><i class="fa fa-arrow-circle-left"></i> Back</a>
         <br /><br />
-        
+
         <label for="Titre">Titre : </label>
         <input type="text" name="Titre" ng-model="gift.name" required>
-        <p class="help-block" ng-show="gift.name.$invalid">Un titre est nécessaire</p>
+        <p class="help-block" ng-show="giftForm.Titre.$invalid">Un titre est nécessaire</p>
 
 
         <label for="Description">Description : </label>
@@ -21,7 +21,7 @@
             <div class="6u 12u$(4)">
                 <label for="Price">Prix</label>
                 <input type="text" class="priceInput" name="Price" ng-model="gift.price" required>
-                <p class="help-block" ng-show="gift.price.$invalid">Un prix est nécessaire</p>
+                <p class="help-block" ng-show="giftForm.Price.$invalid">Un prix est nécessaire</p>
             </div>
             <div class="6u$ 12u$(4)">
                 <label for="Currency">Monnaie</label>
@@ -32,16 +32,15 @@
                         <option value="£">£ livres</option>
                     </select>
                 </div>-->
-                <input type="text" class="priceInput" name="Price" ng-model="gift.currency" required>
-                <p class="help-block" ng-show="gift.currency.$invalid">Une monnaie est nécessaire</p>
+                <input type="text" class="priceInput" name="Currency" ng-model="gift.currency" required>
+                <p class="help-block" ng-show="giftForm.Currency.$invalid">Une monnaie est nécessaire</p>
             </div>
         </div>
 
         <label for="Url">Url : </label>
-        <input type="text" name="Url" ng-model="gift.url" required>
-        <p class="help-block" ng-show="gift.url.$invalid">Une url est nécessaire</p>
-
-
+        <input type="url" name="Url" ng-model="gift.url" required>
+        <p class="help-block" ng-show="giftForm.Url.$invalid">Une url de votre envie est nécessaire, une page produit par exemple sur internet.</p>
+        
         <div class="row uniform 50%">
             <div class="6u 12u$(4)">
                 <div class="mainimage">
@@ -71,16 +70,34 @@
 
                         </li>
                     </ul>
+                    <label for="newImageUrl">Add new imgage Url : </label>
+                    <input type="url" name="newImageUrl" ng-model="gift.tempImageUrl" placeholder="http://monserveur.fr/monimage.jpg" required>
+                    <p class="help-block" ng-show="giftForm.newImageUrl.$invalid">Une url d'image est nécessaire. Rendez vous sur une page, faite un clic droit puis "copier l'adresse de cette image" et coller le lien ici.</p>
+                    <button class="button icon fa-plus" ng-click="addNewImageUrl()">Add Image Url</button>
+                   
+
                 </div>
             </div>
         </div>
 
-        <br />
+
+        
+        <br /><br />
 
         <input type="submit" ng-click="update()" value="Enregistrer" />
 
+        <br /><br /><br />
 
-        
+        <tt>giftForm.newImageUrl.$valid = {{giftForm.newImageUrl.$valid}}</tt><br />
+        <tt>giftForm.newImageUrl.$error = {{giftForm.newImageUrl.$error}}</tt><br />
+
+
+        <tt>giftForm.Url.$valid = {{giftForm.Url.$valid}}</tt><br />
+        <tt>giftForm.Url.$error = {{giftForm.Url.$error}}</tt><br />
+        <tt>giftForm.$valid = {{giftForm.$valid}}</tt><br />
+        <tt>giftForm.$error.required = {{!!giftForm.$error.required}}</tt><br />
+        <tt>giftForm.$error.url = {{!!giftForm.$error.url}}</tt><br />
+
     </form>
 </div>
 

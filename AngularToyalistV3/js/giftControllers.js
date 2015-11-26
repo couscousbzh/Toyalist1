@@ -281,14 +281,23 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routePar
 giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams, $location, GiftDTO, CrawlerService)
 {
     //Load data from API
-    $scope.gift = GiftDTO.get({ id: $routeParams.giftid });
+    $scope.gift = GiftDTO.get({ id: $routeParams.giftid },
+        function () {
+            //For debug
+            $scope.gift.tempImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/290px-Grosser_Panda.JPG';
+        }
+    );
 
     $scope.update = function () {
         //console.log('saving');
+        //console.warn('giftForm.$valid  :' + giftForm.$valid);
+        //console.warn('giftForm.newImageUrl.$valid  :' + giftForm.newImageUrl.$valid);
+        
         GiftDTO.update({ giftId: $scope.gift.id }, $scope.gift, function () {
             //console.log('saved');
             $location.path("/lists/edit/" + $scope.gift.giftListId);
         });
+      
     }
 
 
@@ -307,6 +316,27 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
     }
 
 
+   
+    $scope.addNewImageUrl = function () {
+        //console.log(giftForm.newImageUrl.value);
+
+        if (giftForm.newImageUrl.value != '') {
+            //TODO : faire un controle de l'url et filtrer les site porno, nazi ou qui parle de tricot.
+
+            //remplace directement l'image principale si absente
+            if ($scope.gift.imageURL == 'http://toyalist.reactor.fr/images/no-thumb.png')
+                $scope.gift.imageURL = giftForm.newImageUrl.value;
+            else
+                $scope.gift.imagesURL.push(giftForm.newImageUrl.value);
+
+            giftForm.newImageUrl.value = "";
+        }
+        else {
+            //affiche un msg d'erreur
+
+        }
+    }
+    
 
 
 });
