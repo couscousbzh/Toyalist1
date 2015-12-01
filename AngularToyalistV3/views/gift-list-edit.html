@@ -4,13 +4,6 @@
 
 <div id="giftlist">
 
-    <button class="button icon fa-trash-o right" ng-click="removeAll()">Remove all</button>
-    <form ng-submit="megaCrawlURL()" name="formMegaCrawlUrl">
-        <button class="button icon fa-plus" type="submit">Add multi Urls</button>
-    </form>
-    <div class="clear"></div>
-
-
     <ul>
         <li ng-repeat="gift in gifts">
 
@@ -26,7 +19,7 @@
 
             <div class="title">
                 <a href="{{gift.url}}" target="_blank">
-                    <h3>{{gift.name | filterMaxTitleLength:35 }} </h3> 
+                    <h3>{{gift.name | filterMaxTitleLength:35 }} </h3>
                 </a>
             </div>
             <div class="linktoshop">
@@ -51,21 +44,22 @@
             <a href="#/gifts/edit/{{gift.id}}" class="optionItem"><i class="fa fa-pencil-square-o"></i> Edit this gift</a>
 
             <span class="optionItem" style="font-size:9px;">{{gift.id}} </span>
-           
+
         </li>
     </ul>
 
-
-    <!--Bottom boutons-->
+    
+    <!--Add boutons-->
     <table>
         <tr>
             <td>
-                <form ng-submit="addNewGift()" name="formAddGift">
+                <form ng-submit="addNewGift()" name="formAddGift" novalidate>
 
                     <label for="name">Name: </label>
-                    <input id="name" type="text" placeholder="donnez moi un nom" ng-model="newGiftName">
+                    <input id="name" name="name" type="text" placeholder="donnez moi un nom" ng-model="newGiftName" required>
+                    <p class="help-block" ng-show="formAddGift.name.$invalid && formAddGift.name.$dirty">Merci de renseigner une nom pour votre article.</p>
 
-                    <button class="button icon fa-plus" type="submit">Add</button>
+                    <button class="button small icon fa-plus" type="submit">Add</button>
 
                 </form>
             </td>
@@ -75,7 +69,7 @@
                     <label for="url">URL: </label>
                     <input id="url" type="text" placeholder="donnez moi une url" ng-model="urlToGet">
 
-                    <button class="button icon fa-plus" type="submit">Add</button>
+                    <button class="button small icon fa-plus" type="submit">Add</button>
 
                 </form>
 
@@ -85,16 +79,25 @@
     </table>
 
 
+    <!--Bottom boutons-->
+    <button class="button small icon fa-trash-o right" ng-click="removeAll()">Remove all</button>
+    <form ng-submit="megaCrawlURL()" name="formMegaCrawlUrl">
+        <button class="button small icon fa-plus" type="submit">Add multi Urls</button>
+    </form>
+    <div class="clear"></div>
+
+
     <!--<button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.banggood.com/fr/Digital-Laser-Distance-Meter-Rangefinder-Measure-Diastimeter-40m-50m-60m-70m-80m-100m-optional-p-1009122.html')">Banggood Gift</button>-->
 
 
-    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.amazon.fr/gp/product/B013GRHYUW/ref=br_asw_pdt-2/280-3197474-9607032?pf_rd_m=A1X6FK5RDHNB96')">Amazon Gift</button>
-    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.cdiscount.com/auto/huiles-additifs/bardahl-nettoyant-injecteurs-diesel-1l/f-13373-bar3266720115517.html#mpos=1|cd')">CDiscount Gift</button>
-    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.decathlon.fr/vtt-rockrider-500-id_8293150.html')">Decathlon Gift</button>
-    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.ikea.com/fr/fr/catalog/products/50193256')">Ikea Gift</button>
-    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.priceminister.com/offer/buy/223727295/baby-foot-calcio.html?gclid=CJ_20baGn8kCFU-3GwodAtIHUA#sort=0&filter=10&bbaid=652942720&xtatc=PUB-%5Bggp%5D-%5BEnfant%5D-%5Bjeux-cafe%5D-%5B223727295%5D-%5Bneuf%5D-%5Brdvdeco%5D&t=&ptnrid=s9V1S5FxD_dc|pcrid|53687075363|pkw||pmt|&ja1=tsid:67590|cid:287443283|agid:14497925483|tid:kwd-90083637443|crid:53687075363|nw:g|rnd:11301557471419984015|dvc:c|adp:1o2')">PriceMinister Gift</button>
-    
-    <button class="button icon fa-plus" ng-click="addPredifinedGift('http://www.boulanger.com/ref/1051658')">Boulanger Gift</button>
+    <button class="button alt disable small icon fa-plus" ng-click="addPredifinedGift('http://www.amazon.fr/gp/product/B013GRHYUW/ref=br_asw_pdt-2/280-3197474-9607032?pf_rd_m=A1X6FK5RDHNB96')">Amazon Gift</button>
+    <button class="button alt disable small icon fa-plus" ng-click="addPredifinedGift('http://www.cdiscount.com/auto/huiles-additifs/bardahl-nettoyant-injecteurs-diesel-1l/f-13373-bar3266720115517.html#mpos=1|cd')">CDiscount Gift</button>
+    <button class="button alt disable small icon fa-plus" ng-click="addPredifinedGift('http://www.decathlon.fr/vtt-rockrider-500-id_8293150.html')">Decathlon Gift</button>
+    <button class="button alt disable small icon fa-plus" ng-click="addPredifinedGift('http://www.ikea.com/fr/fr/catalog/products/50193256')">Ikea Gift</button>
+    <button class="button alt disable small icon fa-plus" ng-click="addPredifinedGift('http://www.priceminister.com/offer/buy/223727295/baby-foot-calcio.html?gclid=CJ_20baGn8kCFU-3GwodAtIHUA#sort=0&filter=10&bbaid=652942720&xtatc=PUB-%5Bggp%5D-%5BEnfant%5D-%5Bjeux-cafe%5D-%5B223727295%5D-%5Bneuf%5D-%5Brdvdeco%5D&t=&ptnrid=s9V1S5FxD_dc|pcrid|53687075363|pkw||pmt|&ja1=tsid:67590|cid:287443283|agid:14497925483|tid:kwd-90083637443|crid:53687075363|nw:g|rnd:11301557471419984015|dvc:c|adp:1o2')">PriceMinister Gift</button>
+    <button class="button alt disable small icon fa-plus" ng-click="addPredifinedGift('http://www.boulanger.com/ref/1051658')">Boulanger Gift</button>
+    <button class="button alt disable small icon fa-plus" ng-click="addPredifinedGift('http://www.reactor.fr')">Reactor Gift</button>
+
     <!--<button class="button icon fa-plus" ng-click="addPredifinedGift('')">Ikea Gift</button>
     <button class="button icon fa-plus" ng-click="addPredifinedGift('')">Ikea Gift</button>-->
 

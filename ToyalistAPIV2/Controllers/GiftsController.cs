@@ -14,7 +14,7 @@ using ToyalistAPIV2.Models;
 namespace ToyalistAPIV2.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class GiftsController : ApiController
+    public class GiftsController : ApiController 
     {
         //int secondeCacheMemory = 600; //10 min = 600
         //MemoryCacher memCacher = new MemoryCacher();

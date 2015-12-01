@@ -56,7 +56,7 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams,
             },
             function (error) {
                 console.log('error : ' + error);
-                swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Cool" });
+                swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" });
             }
         );
 
@@ -290,14 +290,22 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
 
     $scope.update = function () {
         //console.log('saving');
-        //console.warn('giftForm.$valid  :' + giftForm.$valid);
-        //console.warn('giftForm.newImageUrl.$valid  :' + giftForm.newImageUrl.$valid);
+        //console.warn('giftForm.$valid  :' + $scope.giftForm.$valid);
+        //console.warn('giftForm.newImageUrl.$valid  :' + $scope.giftForm.newImageUrl.$valid);
         
-        GiftDTO.update({ giftId: $scope.gift.id }, $scope.gift, function () {
-            //console.log('saved');
-            $location.path("/lists/edit/" + $scope.gift.giftListId);
-        });
-      
+        if ($scope.giftForm.$valid) {
+            GiftDTO.update({ giftId: $scope.gift.id }, $scope.gift, function () {
+                //console.log('saved');
+                $location.path("/lists/edit/" + $scope.gift.giftListId);
+            });
+        }
+        else {
+            console.warn('$scope.giftForm.$error : ' + $scope.giftForm.$error);
+
+
+
+            swal({ title: "Error!", text: "Il semblerait que certain champs soit mal renseigner : ", type: "error", confirmButtonText: "Ok" });
+        }
     }
 
 
@@ -318,9 +326,10 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
 
    
     $scope.addNewImageUrl = function () {
-        //console.log(giftForm.newImageUrl.value);
-
-        if (giftForm.newImageUrl.value != '') {
+        //console.log(giftForm.newImageUrl.value.length);
+        
+        if (giftForm.newImageUrl.value.length > 0)
+        {
             //TODO : faire un controle de l'url et filtrer les site porno, nazi ou qui parle de tricot.
 
             //remplace directement l'image principale si absente
@@ -328,12 +337,12 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
                 $scope.gift.imageURL = giftForm.newImageUrl.value;
             else
                 $scope.gift.imagesURL.push(giftForm.newImageUrl.value);
-
+           
             giftForm.newImageUrl.value = "";
         }
         else {
             //affiche un msg d'erreur
-
+            
         }
     }
     

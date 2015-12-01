@@ -10,7 +10,7 @@
 
         <label for="Titre">Titre : </label>
         <input type="text" name="Titre" ng-model="gift.name" required>
-        <p class="help-block" ng-show="giftForm.Titre.$invalid">Un titre est nécessaire</p>
+        <p class="help-block ng-valid" ng-show="giftForm.Titre.$invalid">Un titre est nécessaire</p>
 
 
         <label for="Description">Description : </label>
@@ -40,7 +40,7 @@
         <label for="Url">Url : </label>
         <input type="url" name="Url" ng-model="gift.url" required>
         <p class="help-block" ng-show="giftForm.Url.$invalid">Une url de votre envie est nécessaire, une page produit par exemple sur internet.</p>
-        
+
         <div class="row uniform 50%">
             <div class="6u 12u$(4)">
                 <div class="mainimage">
@@ -70,18 +70,20 @@
 
                         </li>
                     </ul>
-                    <label for="newImageUrl">Add new imgage Url : </label>
-                    <input type="url" name="newImageUrl" ng-model="gift.tempImageUrl" placeholder="http://monserveur.fr/monimage.jpg" required>
-                    <p class="help-block" ng-show="giftForm.newImageUrl.$invalid">Une url d'image est nécessaire. Rendez vous sur une page, faite un clic droit puis "copier l'adresse de cette image" et coller le lien ici.</p>
-                    <button class="button icon fa-plus" ng-click="addNewImageUrl()">Add Image Url</button>
-                   
-
                 </div>
+
+
+                <label for="newImageUrl">Add new image Url : </label>
+                <input type="url" name="newImageUrl" ng-minlength="1" ng-model="gift.tempImageUrl" placeholder="http://monserveur.fr/monimage.jpg" required>
+                <p class="help-block" ng-show="giftForm.newImageUrl.$invalid">Une url d'image est nécessaire. Rendez vous sur une page, faite un clic droit puis "copier l'adresse de cette image" et coller le lien ici.</p>
+                <button class="button icon fa-plus" ng-click="addNewImageUrl()">Add Image Url</button>
+
+
             </div>
         </div>
 
 
-        
+
         <br /><br />
 
         <input type="submit" ng-click="update()" value="Enregistrer" />
@@ -91,10 +93,14 @@
         <tt>giftForm.newImageUrl.$valid = {{giftForm.newImageUrl.$valid}}</tt><br />
         <tt>giftForm.newImageUrl.$error = {{giftForm.newImageUrl.$error}}</tt><br />
 
+        <hr />
 
-        <tt>giftForm.Url.$valid = {{giftForm.Url.$valid}}</tt><br />
-        <tt>giftForm.Url.$error = {{giftForm.Url.$error}}</tt><br />
         <tt>giftForm.$valid = {{giftForm.$valid}}</tt><br />
+        <tt>giftForm.$invalid = {{giftForm.$invalid}}</tt><br />
+        <tt>giftForm.$pristine = {{giftForm.$pristine}}</tt><br />
+        <tt>giftForm.$dirty = {{giftForm.$dirty}}</tt><br />
+
+        $
         <tt>giftForm.$error.required = {{!!giftForm.$error.required}}</tt><br />
         <tt>giftForm.$error.url = {{!!giftForm.$error.url}}</tt><br />
 

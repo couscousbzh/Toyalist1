@@ -15,6 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularToyalistV3", "Angula
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyalistAPIV2", "ToyalistAPIV2\ToyalistAPIV2.csproj", "{2B4F0CCE-B595-4D22-9EC3-8E1C28D40A0E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E4D7272-1F53-4954-891D-939EA3B3B77A}"
+	ProjectSection(SolutionItems) = preProject
+		Versions.txt = Versions.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyalistAPIV3", "ToyalistAPIV3\ToyalistAPIV3.csproj", "{A025E99C-B08B-4562-A996-90512FDC3A65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +52,10 @@ Global
 		{2B4F0CCE-B595-4D22-9EC3-8E1C28D40A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B4F0CCE-B595-4D22-9EC3-8E1C28D40A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B4F0CCE-B595-4D22-9EC3-8E1C28D40A0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A025E99C-B08B-4562-A996-90512FDC3A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A025E99C-B08B-4562-A996-90512FDC3A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A025E99C-B08B-4562-A996-90512FDC3A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A025E99C-B08B-4562-A996-90512FDC3A65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

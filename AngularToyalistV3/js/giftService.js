@@ -1,7 +1,7 @@
 ﻿var giftServiceModule = angular.module('giftServiceModule', [])
 
 
-var environnement = "DEV";
+var environnement = "PROD";
 
 
 var domainAPI;
