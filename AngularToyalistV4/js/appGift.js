@@ -1,13 +1,13 @@
 ﻿var giftApp = angular.module('giftApp', [
   'ngRoute',
   'ngResource',
-  'userControllersModule',
-  'giftControllersModule',
-  'giftServiceModule',
+  'LocalStorageModule',
+  'myServiceModule',
+  'userControllersModule',   
+  'giftControllersModule', 
   'giftDirectiveModule',
   'giftFiltersModule'
 ]);
-
 
 
 /***********************/
@@ -55,11 +55,10 @@ giftApp.config(['$routeProvider',
 ]);
 
 //giftApp.run(function ($http) {
-    
+//$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
 //});
 
-giftApp.run(['authService', function (authService) {
-    //$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
+giftApp.run(['authService', function (authService) {    
     authService.fillAuthData();
 }]);
 
@@ -116,3 +115,5 @@ giftApp.config(['$httpProvider',
       });
   }
 ])
+
+
