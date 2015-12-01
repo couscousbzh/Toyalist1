@@ -1,6 +1,7 @@
 ﻿var giftApp = angular.module('giftApp', [
   'ngRoute',
   'ngResource',
+  'userControllersModule',
   'giftControllersModule',
   'giftServiceModule',
   'giftDirectiveModule',
@@ -17,7 +18,7 @@ giftApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html'
+                templateUrl: 'views/home.html'
             })
             //.when('/lists/', {
             //    templateUrl: 'views/gift-list.html',
@@ -42,9 +43,10 @@ giftApp.config(['$routeProvider',
             .when('/login', {
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl',
-                access: {
-                    isFree: true
-                }
+            })
+            .when('/signup', {
+                templateUrl: 'views/signup.html',
+                controller: 'SignUpCtrl',
             })
             .otherwise({
                 redirectTo: '/'
@@ -52,11 +54,14 @@ giftApp.config(['$routeProvider',
     }
 ]);
 
-giftApp.run(function ($http) {
+//giftApp.run(function ($http) {
+    
+//});
+
+giftApp.run(['authService', function (authService) {
     //$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
-});
-
-
+    authService.fillAuthData();
+}]);
 
 /***********************/
 /*    INTERCEPTORS     */

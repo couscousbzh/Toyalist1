@@ -1,7 +1,7 @@
 ﻿var giftServiceModule = angular.module('giftServiceModule', [])
 
 
-var environnement = "PROD";
+var environnement = "DEV";
 
 
 var domainAPI;
@@ -10,7 +10,7 @@ if (environnement == "PROD")
     domainAPI = "http://toyalist-api.reactor.fr/"
 }
 if (environnement == "DEV") {
-    domainAPI = "http://localhost:11217/"
+    domainAPI = "http://localhost:8324/"
 }
 var ToyalistURlWebAPI_Gifts = domainAPI + 'api/gifts/:giftId';
 var ToyalistURlWebAPI_Lists = domainAPI + 'api/giftlists/:giftlistid';

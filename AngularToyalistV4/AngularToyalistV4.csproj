@@ -129,6 +129,7 @@
     <Content Include="js\angular-route.min.js" />
     <Content Include="js\angular.min.js" />
     <Content Include="js\appGift.js" />
+    <Content Include="js\userControllers.js" />
     <Content Include="js\giftControllers.js" />
     <Content Include="js\giftDirective.js" />
     <Content Include="js\giftFilters.js" />
@@ -195,8 +196,9 @@
     <Content Include="views\gift-list-edit.html" />
     <Content Include="views\gift-list-new.html" />
     <Content Include="views\gift-list.html" />
+    <Content Include="views\signup.html" />
     <Content Include="views\login.html" />
-    <Content Include="views\main.html" />
+    <Content Include="views\home.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
