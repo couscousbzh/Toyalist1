@@ -13,6 +13,7 @@ namespace ToyalistAPIV3.Models
     {
  
         public string Id { get; set; }
+        public string OwnerUserId { get; set; }
         public string GiftListId { get; set; }      
         public string Url { get; set; }
         public string Name { get; set; }

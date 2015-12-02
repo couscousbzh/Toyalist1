@@ -24,9 +24,6 @@ namespace ToyalistAPIV3.Controllers
         [HttpGet]
         public IEnumerable<GiftList> GetAllGiftLists()
         {
-            //RefreshData();
-
-            //return dataList;
 
             return repository.GetAll();
         }
