@@ -15,4 +15,10 @@ ToyalistAPIV3 --> Ajout de Owin + Asp.net Identity  gestion de la sécurité Coupl
 Tuto :
 http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/ (AngularToyalistV4 - ToyalistAPIV3)
 
-http://bitoftech.net/2015/01/21/asp-net-identity-2-with-asp-net-web-api-2-accounts-management/ (AngularToyalistV4 - ToyalistAPIV4)
+---------------------------------
+
+ToyalistAPIV4 --> voir help
+
+?? a faire ou pas ?
+
+http://bitoftech.net/2015/01/21/asp-net-identity-2-with-asp-net-web-api-2-accounts-management/ (AngularToyalistV5 - ToyalistAPIV4)

@@ -9,9 +9,11 @@ namespace ToyalistAPIV3
 {
     public class AuthContext : IdentityDbContext<IdentityUser>
     {
-        public AuthContext() : base("AuthContext")
+        public AuthContext()
+           : base("AuthContext")
         {
 
         }
+
     }
 }

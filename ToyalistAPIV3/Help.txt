@@ -1,0 +1,25 @@
+﻿
+J'ai suivis ce tuto
+http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
+
+Il y a une sécurité basé sur un bearer token. 
+
+Je n'ai pas implémenté de refresh token (part3)
+Part 4 t 5 n'ont pas été fait non plus.
+
+Il manque une gestion de role (une fois logué, on a accès a tout sans hierachie d'administration)
+--> voir si c'est pas un concept de claims qui faudrait implémenter plutot.
+
+Pas de login external (Facebook Google.) dans cette version
+
+Le front correspondant est la version AngularToyalistV4.
+
+
+
+------------
+
+Mercredi soir, je suis mort, j'ai plus de yeux, je m'arrete dans cet état :
+
+- ToyalistAPIV3 fonctionnait sur un model simple de bearer token, et avec le tuto ci dessus. 
+- Je l'ai pété, j'aurais du partir sur un projet ToyalistAPIV4
+
