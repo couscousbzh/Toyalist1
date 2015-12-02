@@ -11,10 +11,6 @@ ToyalistAPIV1 --> Permiere version de l'API, ne fonctionnera qu'avec AngularToya
 ToyalistAPIV2 --> Version plus aboutit, sans base de données, gestion des listes, des gifts, du crawl. Couplé avec AngularToyalistV3.
 ToyalistAPIV3 --> Ajout de Owin + Asp.net Identity  gestion de la sécurité Couplé avec AngularToyalistV4.
 
-
-
-
-
 Tuto :
 http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
 

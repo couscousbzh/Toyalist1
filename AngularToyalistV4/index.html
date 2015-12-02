@@ -26,7 +26,6 @@
     </noscript>
 
 
-
     <!-- BootStrap -->
     <link href="plugins/bootstrap-3.3.6-dist/css/bootstrap.css" rel="stylesheet" />
     <script src="plugins/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
@@ -42,21 +41,23 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-route.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.js"></script>-->
 
-    <script src="js/angular.min.js"></script>
-    <script src="js/angular-route.min.js"></script>
-    <script src="js/angular-resource.js"></script>
+    <script src="plugins/angular/angular.min.js"></script>
+    <script src="plugins/angular/angular-route.min.js"></script>
+    <script src="plugins/angular/angular-resource.js"></script>
+    <script src="plugins/angular/angular-local-storage.min.js"></script>
 
-    <script src="js/angular-local-storage.min.js"></script>
-    <script src="js/authInterceptorService.js"></script>
+    <script src="app/authInterceptorService.js"></script>
 
-    <script src="js/myService.js"></script>
+    <script src="app/myService.js"></script>
 
-    <script src="js/userControllers.js"></script>
-    <script src="js/giftControllers.js"></script>
-    <script src="js/giftDirective.js"></script>
-    <script src="js/giftFilters.js"></script>
+    <script src="app/indexControllers.js"></script>
+    <script src="app/userControllers.js"></script>
+    <script src="app/giftControllers.js"></script>
 
-    <script src="js/appGift.js"></script>
+    <script src="app/giftDirective.js"></script>
+    <script src="app/giftFilters.js"></script>
+
+    <script src="app/appGift.js"></script>
 
 
     <!-- LoadingBar à charger apres angular -->
@@ -66,7 +67,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
+    <header id="header" data-ng-controller="HeaderCtrl">
         <h1><a href="index.html">Toyalist</a></h1>
         <nav id="nav">
             <ul>
@@ -74,7 +75,7 @@
                 <li><a href="generic.html">Generic</a></li>
                 <li><a href="elements.html">Elements</a></li>-->
                 <!--<li><a href="#" class="button special">Sign Up</a></li>-->
-
+                <li>is auth : {{authentication.isAuth}}</li>
                 <li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>
                 <li data-ng-hide="!authentication.isAuth"><a href="#/lists">My lists</a></li>
                 <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>

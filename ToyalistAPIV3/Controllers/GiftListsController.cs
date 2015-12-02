@@ -20,7 +20,7 @@ namespace ToyalistAPIV3.Controllers
     {
         static readonly IGiftListRepository repository = new GiftListRepository();
 
-
+        [Authorize]
         [HttpGet]
         public IEnumerable<GiftList> GetAllGiftLists()
         {

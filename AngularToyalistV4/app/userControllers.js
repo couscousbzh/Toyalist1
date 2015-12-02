@@ -5,9 +5,27 @@
 /***********************/
 /*    LoginCtrl        */
 /***********************/
-userControllersModule.controller('LoginCtrl', function ($scope, $http, UserService) {
+userControllersModule.controller('LoginCtrl', function ($scope, $http, $location, authService) {
     
-   
+    $scope.loginData = {
+        userName: "",
+        password: ""
+    };
+
+    $scope.message = "";
+
+    $scope.login = function () {
+
+        authService.login($scope.loginData).then(function (response) {
+
+            $location.path('/lists');
+
+        },
+         function (err) {
+             $scope.message = err.error_description;
+         });
+    };
+
 
 });
 
@@ -16,7 +34,7 @@ userControllersModule.controller('LoginCtrl', function ($scope, $http, UserServi
 /***********************/
 /*    SignUpCtrl     */
 /***********************/
-userControllersModule.controller('SignUpCtrl', function ($scope, $routeParams) {
+userControllersModule.controller('SignUpCtrl', function ($scope, $routeParams, $timeout, $location, authService) {
     
     $scope.savedSuccessfully = false;
     $scope.message = "";

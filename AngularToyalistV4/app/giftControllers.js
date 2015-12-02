@@ -10,6 +10,48 @@
 
 
 
+/**************************/
+/*    ListCtrl            */
+/**************************/
+//Controler qui affiche les listes d'un user (sans ses gifts)
+giftControllersModule.controller('ListCtrl', function ($scope, $routeParams, $location, GiftListDTO) {
+    
+    $scope.lists = GiftListDTO.query(
+           function (success) {
+               console.log('success : ' + success);
+           },
+           function (error) {
+               console.log('error : ' + error);
+               //swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" });
+           }
+       );
+});
+
+
+/***********************/
+/*    GiftListCtrl     */
+/***********************/
+//Controler qui affiche une liste avec ses gifts
+giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams, GiftListDTO, GiftDTO) {
+    
+    /******************************************************/
+    /* LOAD de la liste principale puis la liste complete des cadeaux depuis l'API */
+    //console.log($routeParams.giftlistsid);
+
+    //$scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
+    
+    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid },
+            function (success) {
+                console.log('success : ' + success);               
+            },
+            function (error) {
+                console.log('error : ' + error);
+                swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" });
+            }
+        );
+
+    $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
+});
 
 /**************************/
 /*    GiftListNewCtrl     */
@@ -36,31 +78,6 @@ giftControllersModule.controller('GiftListNewCtrl', function ($scope, $routePara
         );
     }
 
-});
-
-
-/***********************/
-/*    GiftListCtrl     */
-/***********************/
-giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams, GiftListDTO, GiftDTO) {
-    
-    /******************************************************/
-    /* LOAD de la liste principale puis la liste complete des cadeaux depuis l'API */
-    //console.log($routeParams.giftlistsid);
-
-    //$scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
-    
-    $scope.list = GiftListDTO.get({ id: $routeParams.giftlistid },
-            function (success) {
-                console.log('success : ' + success);               
-            },
-            function (error) {
-                console.log('error : ' + error);
-                swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" });
-            }
-        );
-
-    $scope.gifts = GiftDTO.query({ giftlistid: $routeParams.giftlistid });
 });
 
 

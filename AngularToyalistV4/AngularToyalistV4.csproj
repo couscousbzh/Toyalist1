@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\indexControllers.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -113,24 +114,22 @@
     <Content Include="images\pic08.jpg" />
     <Content Include="images\profile_placeholder.gif" />
     <Content Include="index.html" />
-    <Content Include="js\angular-local-storage.min.js" />
-    <Content Include="js\angular-resource.js" />
-    <Content Include="js\angular-route.min.js" />
-    <Content Include="js\angular.min.js" />
-    <Content Include="js\appGift.js" />
-    <Content Include="js\authInterceptorService.js" />
-    <Content Include="js\userControllers.js" />
-    <Content Include="js\giftControllers.js" />
-    <Content Include="js\giftDirective.js" />
-    <Content Include="js\giftFilters.js" />
-    <Content Include="js\myService.js" />
+    <Content Include="plugins\angular\angular-local-storage.min.js" />
+    <Content Include="plugins\angular\angular-resource.js" />
+    <Content Include="plugins\angular\angular-route.min.js" />
+    <Content Include="plugins\angular\angular.min.js" />
+    <Content Include="app\appGift.js" />
+    <Content Include="app\authInterceptorService.js" />
+    <Content Include="app\userControllers.js" />
+    <Content Include="app\giftControllers.js" />
+    <Content Include="app\giftDirective.js" />
+    <Content Include="app\giftFilters.js" />
+    <Content Include="app\myService.js" />
     <Content Include="js\html5shiv.js" />
     <Content Include="js\init.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\skel-layers.min.js" />
     <Content Include="js\skel.min.js" />
-    <Content Include="js\sweetalert-dev.js" />
-    <Content Include="js\sweetalert.min.js" />
     <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap-theme.css" />
     <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap-theme.min.css" />
     <Content Include="plugins\bootstrap-3.3.6-dist\css\bootstrap.css" />
@@ -150,6 +149,7 @@
     <Content Include="views\gift-list-edit.html" />
     <Content Include="views\gift-list-new.html" />
     <Content Include="views\gift-list.html" />
+    <Content Include="views\list.html" />
     <Content Include="views\signup.html" />
     <Content Include="views\login.html" />
     <Content Include="views\home.html" />
