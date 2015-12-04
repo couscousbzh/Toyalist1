@@ -28,8 +28,11 @@ namespace ToyalistAPIV4.Services
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
 
-            var credentials = new NetworkCredential(ConfigurationManager.AppSettings["emailService:Account"],
-                                                    ConfigurationManager.AppSettings["emailService:Password"]);
+
+            string sendGridAccount = ConfigurationManager.AppSettings["emailService:Account"];
+            string sendGridPassword = ConfigurationManager.AppSettings["emailService:Password"];
+
+            var credentials = new NetworkCredential(sendGridAccount, sendGridPassword);
 
             // Create a Web transport for sending email.
             var transportWeb = new Web(credentials);
