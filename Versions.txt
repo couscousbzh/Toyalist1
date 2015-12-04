@@ -5,20 +5,17 @@ AngularToyalistV1 --> Version minimaliste d'essai, une seule vue
 AngularToyalistV2 --> Version avec deux vues, la liste et le gift couplé avec ToyalistAPIV1
 AngularToyalistV3 --> Ajout d'une page de création de liste, meilleurs gestion, crawl ok, controle des champs (front), couplé avec ToyalistAPIV2
 AngularToyalistV4 --> Ajout de login et gestion de la sécurité  couplé avec ToyalistAPIV3
+AngularToyalistV5 --> Login/email gestion de mdp, 
 
 BACK :
 ToyalistAPIV1 --> Permiere version de l'API, ne fonctionnera qu'avec AngularToyalistV2,  sans base de données
 ToyalistAPIV2 --> Version plus aboutit, sans base de données, gestion des listes, des gifts, du crawl. Couplé avec AngularToyalistV3.
 ToyalistAPIV3 --> Ajout de Owin + Asp.net Identity  gestion de la sécurité Couplé avec AngularToyalistV4. Simple Bearer Token
+ToyalistAPIV4 --> Fresh start. ASP.NET Identity 2.1 Login/email gestion de mdp,  sendgrid
+
 
 
 Tuto :
 http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/ (AngularToyalistV4 - ToyalistAPIV3)
-
----------------------------------
-
-ToyalistAPIV4 --> voir help
-
-?? a faire ou pas ?
 
 http://bitoftech.net/2015/01/21/asp-net-identity-2-with-asp-net-web-api-2-accounts-management/ (AngularToyalistV5 - ToyalistAPIV4)

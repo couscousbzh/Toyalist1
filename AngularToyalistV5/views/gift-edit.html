@@ -1,0 +1,109 @@
+﻿
+
+<div id="giftEdit">
+
+    <form name="giftForm" novalidate>
+
+
+        <a href="/#/lists/edit/{{gift.giftListId}}"><i class="fa fa-arrow-circle-left"></i> Back</a>
+        <br /><br />
+
+        <label for="Titre">Titre : </label>
+        <input type="text" name="Titre" ng-model="gift.name" required>
+        <p class="help-block ng-valid" ng-show="giftForm.Titre.$invalid">Un titre est nécessaire</p>
+
+
+        <label for="Description">Description : </label>
+        <textarea name="Description" id="Description" placeholder="Enter your message" rows="4" ng-model="gift.description"></textarea>
+
+
+        <div class="row uniform 50%">
+            <div class="6u 12u$(4)">
+                <label for="Price">Prix</label>
+                <input type="text" class="priceInput" name="Price" ng-model="gift.price" required>
+                <p class="help-block" ng-show="giftForm.Price.$invalid">Un prix est nécessaire</p>
+            </div>
+            <div class="6u$ 12u$(4)">
+                <label for="Currency">Monnaie</label>
+                <!--<div class="select-wrapper">
+                    <select name="category" id="category" ng-model="gift.currency">
+                        <option selected value="€">€ euros</option>
+                        <option value="$">$ dollars</option>
+                        <option value="£">£ livres</option>
+                    </select>
+                </div>-->
+                <input type="text" class="priceInput" name="Currency" ng-model="gift.currency" required>
+                <p class="help-block" ng-show="giftForm.Currency.$invalid">Une monnaie est nécessaire</p>
+            </div>
+        </div>
+
+        <label for="Url">Url : </label>
+        <input type="url" name="Url" ng-model="gift.url" required>
+        <p class="help-block" ng-show="giftForm.Url.$invalid">Une url de votre envie est nécessaire, une page produit par exemple sur internet.</p>
+
+        <div class="row uniform 50%">
+            <div class="6u 12u$(4)">
+                <div class="mainimage">
+                    <label>Image principale : </label>
+                    <span class="image fit"><img ng-src="{{gift.imageURL}}"></span>
+                </div>
+            </div>
+            <div class="6u$ 12u$(4)">
+                <label>Image secondaires : </label>
+                <div class="additionalimages">
+                    <ul>
+                        <li ng-repeat="image in gift.imagesURL">
+
+                            <div class="imgBox">
+                                <img class="image" ng-src="{{image}}" width="50">
+                                <div class="miniBox">
+
+                                    <a href="" id="miniButtonRight" ng-click="removeImage(image)">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+
+                                    <a href="" id="miniButtonLeft" ng-click="makeDefaultImage(image)">
+                                        <i class="fa fa-arrow-circle-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+
+
+                <label for="newImageUrl">Add new image Url : </label>
+                <input type="url" name="newImageUrl" ng-minlength="1" ng-model="gift.tempImageUrl" placeholder="http://monserveur.fr/monimage.jpg" required>
+                <p class="help-block" ng-show="giftForm.newImageUrl.$invalid">Une url d'image est nécessaire. Rendez vous sur une page, faite un clic droit puis "copier l'adresse de cette image" et coller le lien ici.</p>
+                <button class="button icon fa-plus" ng-click="addNewImageUrl()">Add Image Url</button>
+
+
+            </div>
+        </div>
+
+
+
+        <br /><br />
+
+        <input type="submit" ng-click="update()" value="Enregistrer" />
+
+        <br /><br /><br />
+
+        <tt>giftForm.newImageUrl.$valid = {{giftForm.newImageUrl.$valid}}</tt><br />
+        <tt>giftForm.newImageUrl.$error = {{giftForm.newImageUrl.$error}}</tt><br />
+
+        <hr />
+
+        <tt>giftForm.$valid = {{giftForm.$valid}}</tt><br />
+        <tt>giftForm.$invalid = {{giftForm.$invalid}}</tt><br />
+        <tt>giftForm.$pristine = {{giftForm.$pristine}}</tt><br />
+        <tt>giftForm.$dirty = {{giftForm.$dirty}}</tt><br />
+
+        $
+        <tt>giftForm.$error.required = {{!!giftForm.$error.required}}</tt><br />
+        <tt>giftForm.$error.url = {{!!giftForm.$error.url}}</tt><br />
+
+    </form>
+</div>
+
