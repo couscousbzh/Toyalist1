@@ -151,6 +151,11 @@
     <Compile Include="Controllers\CrawlerController.cs" />
     <Compile Include="Controllers\GiftListsController.cs" />
     <Compile Include="Controllers\GiftsController.cs" />
+    <Compile Include="Migrations\201512041318543_InitialCreate.cs" />
+    <Compile Include="Migrations\201512041318543_InitialCreate.Designer.cs">
+      <DependentUpon>201512041318543_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthRepository.cs" />
     <Compile Include="Models\Gift.cs" />
     <Compile Include="Models\GiftList.cs" />
@@ -176,6 +181,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512041318543_InitialCreate.resx">
+      <DependentUpon>201512041318543_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
