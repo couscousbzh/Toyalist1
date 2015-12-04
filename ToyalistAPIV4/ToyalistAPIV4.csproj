@@ -152,12 +152,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Infrastructure\ApplicationDbContext.cs" />
+    <Compile Include="Infrastructure\ApplicationUser.cs" />
+    <Compile Include="Infrastructure\ApplicationUserManager.cs" />
+    <Compile Include="Migrations\201512041402264_InitialCreate.cs" />
+    <Compile Include="Migrations\201512041402264_InitialCreate.Designer.cs">
+      <DependentUpon>201512041402264_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Models\ModelFactory.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Tools.cs" />
     <Content Include="Help.txt" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512041402264_InitialCreate.resx">
+      <DependentUpon>201512041402264_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
