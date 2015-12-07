@@ -181,6 +181,9 @@
     <Compile Include="AspNetIdentity\WebApi.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\CrawlerController.cs" />
+    <Compile Include="Controllers\GiftListsController.cs" />
+    <Compile Include="Controllers\GiftsController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Infrastructure\ApplicationDbContext.cs" />
@@ -193,6 +196,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Models\Gift.cs" />
+    <Compile Include="Models\GiftList.cs" />
+    <Compile Include="Models\GiftListRepository.cs" />
+    <Compile Include="Models\GiftRepository.cs" />
+    <Compile Include="Models\HtmlContent.cs" />
+    <Compile Include="Models\IGiftListRepository.cs" />
+    <Compile Include="Models\IGiftRepository.cs" />
     <Compile Include="Models\ModelFactory.cs" />
     <Compile Include="Models\RoleBindingModels.cs" />
     <Compile Include="Providers\CustomJwtFormat.cs" />

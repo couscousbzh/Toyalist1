@@ -10,8 +10,9 @@ using System.Web.Http;
 namespace ToyalistAPIV4.Controllers
 {
     [RoutePrefix("api/helper")]
-    public class HelperController : ApiController
+    public class HelperController : BaseApiController
     {
+        [Authorize(Roles = "Admin")]
         [Route("getsecret")]
         [HttpGet]
         public IHttpActionResult GetSecret([FromUri]string clientName)
