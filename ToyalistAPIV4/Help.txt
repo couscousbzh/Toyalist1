@@ -9,16 +9,15 @@ Install-Package Microsoft.AspNet.WebApi.Owin -Version 5.2.2
 Install-Package Microsoft.Owin.Security.OAuth -Version 3.0.0
 Install-Package Microsoft.Owin.Cors -Version 3.0.0
 
+Install-package System.IdentityModel.Tokens.Jwt -Version 4.0.1
+Install-package Thinktecture.IdentityModel.Core -Version 1.3.0
+
+Install-Package Microsoft.Owin.Security.Jwt -Version 3.0.0
+
 ------------
 
-Mercredi soir, je suis mort, j'ai plus de yeux, je m'arrete dans cet état :
+Tuto : http://bitoftech.net/2015/01/21/asp-net-identity-2-with-asp-net-web-api-2-accounts-management/
 
-- ToyalistAPIV3 fonctionnait sur un model simple de bearer token, et avec le tuto ci dessus. 
-- Il faudrait trouver un moyen de récupérer le user sur chaque controler pour évaluer son niveau (role) 
-et déterminer si il est en possession d'une ressource (OwnerUserId), ya une piste ici :
-http://bitoftech.net/2015/01/21/asp-net-identity-2-with-asp-net-web-api-2-accounts-management/
-http://stackoverflow.com/questions/28657852/how-to-get-user-context-during-web-api-calls
-avec la création d'une base API
+------------
 
-
-
+Todo in startup.cs //on production should be AllowInsecureHttp = false line 48
