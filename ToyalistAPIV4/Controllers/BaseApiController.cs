@@ -17,6 +17,11 @@ namespace ToyalistAPIV4.Controllers
 
         private ModelFactory _modelFactory;
         private ApplicationUserManager _AppUserManager = null;
+        private ApplicationRoleManager _AppRoleManager = null;
+
+        public BaseApiController()
+        {
+        }
 
         protected ApplicationUserManager AppUserManager
         {
@@ -26,8 +31,12 @@ namespace ToyalistAPIV4.Controllers
             }
         }
 
-        public BaseApiController()
+        protected ApplicationRoleManager AppRoleManager
         {
+            get
+            {
+                return _AppRoleManager ?? Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
         }
 
         protected ModelFactory TheModelFactory
