@@ -9,25 +9,38 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
-
-//using System.Web.Http.Cors;
+using ToyalistAPIV4.Infrastructure;
+using System.Web.Http.Cors;
 using ToyalistAPIV4.Models;
+using System.Web;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace ToyalistAPIV4.Controllers
 {
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/giftlists")]
     public class GiftListsController : BaseApiController
     {
-        static readonly IGiftListRepository repository = new GiftListRepository();
+        static readonly IGiftListRepository repository = new GiftListRepository(new ApplicationDbContext());
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public IEnumerable<GiftList> GetAllGiftLists()
         {
             return repository.GetAll();
         }
 
-        [Authorize]
+        //[Authorize]
+        [HttpGet]
+        [Route("user/{userid}")]
+        public IEnumerable<GiftList> GetAllGiftListsByUserId(string userid)
+        {
+            return repository.GetAllGiftListsByUserId(userid);
+        }
+
+
+        //[Authorize]
         [HttpGet]
         public IHttpActionResult GetGiftList(string id)
         {
@@ -51,11 +64,12 @@ namespace ToyalistAPIV4.Controllers
 
             try
             {
+                //Récupération de l'id de l'utilisateur en cours
+                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+                giftList.OwnerUserId = user.Id;
+
                 GiftList createdGiftList = repository.Add(giftList);
-
-                //TO DO : ajout en BD 
-
-
+                
                 return Ok(createdGiftList);
             }
             catch (Exception ex)

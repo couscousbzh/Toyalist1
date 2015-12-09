@@ -23,13 +23,7 @@ namespace ToyalistAPIV4.Models
 
         public string UserSid { get; set; }
 
-
-
-        // La j'ai un soucis de conception, 
-        // d'un point de vue EntityFramework ca aurait du sens de mettre la liste des cadeaux dans cet objet liste.
-        // mais d'un point de vu Restful, on peut pas, tout est découplé, du coup il faut rajouter l'id de la liste dans chaque objet gift, 
-        //pour l'associer à cette liste tout en dissociant les deux entités liste et cadeau
-        //public List<Gift> Gifts { get; set; }
+        public virtual List<Gift> Gifts { get; set; }
 
     }
 }

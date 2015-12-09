@@ -38,7 +38,7 @@ namespace ToyalistAPIV4.Infrastructure
                 RequireUppercase = true,
             };
 
-            //Configure 
+            //Configure notification service
             appUserManager.EmailService = new Services.EmailService();
             //appUserManager.SmsService = (...)
 

@@ -1,0 +1,9 @@
+﻿
+console.log('log');
+console.warn('warn');
+console.debug('debug');
+console.error('error');
+console.info('info');
+
+
+

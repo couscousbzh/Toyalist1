@@ -34,14 +34,14 @@ giftApp.config(['$routeProvider',
                 templateUrl: 'views/list.html',
                 controller: 'ListCtrl'
             })
-            .when('/lists/:giftlistid', {
-                templateUrl: 'views/gift-list.html',
-                controller: 'GiftListCtrl'
-            })
             .when('/lists/new', {
                 templateUrl: 'views/gift-list-new.html',
                 controller: 'GiftListNewCtrl'
             })
+            .when('/lists/:giftlistid', {
+                templateUrl: 'views/gift-list.html',
+                controller: 'GiftListCtrl'
+            })            
             .when('/lists/edit/:giftlistid', {
                 templateUrl: 'views/gift-list-edit.html',
                 controller: 'GiftListEditCtrl'

@@ -9,9 +9,10 @@ namespace ToyalistAPIV4.Models
     public interface IGiftListRepository
     {
         IEnumerable<GiftList> GetAll();
-        GiftList Get(string sid);
+        IEnumerable<GiftList> GetAllGiftListsByUserId(string userId);
+        GiftList Get(string id);
         GiftList Add(GiftList item);
-        void Remove(string sid);
+        void Remove(string id);
         bool Update(GiftList item);
     }
 }

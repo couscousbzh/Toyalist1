@@ -1,15 +1,6 @@
 ﻿var giftControllersModule = angular.module('giftControllersModule', []);
 
 
-
-//console.log('log');
-//console.warn('warn');
-//console.debug('debug');
-//console.error('error');
-//console.info('info');
-
-
-
 /**************************/
 /*    ListCtrl            */
 /**************************/
@@ -21,10 +12,15 @@ giftControllersModule.controller('ListCtrl', function ($scope, $routeParams, $lo
                console.log('success : ' + success);
            },
            function (error) {
-               console.log('error : ' + error);
+               console.error('error : ' + error);
                //swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" });
            }
        );
+
+    if ($scope.lists.length == 0) {
+        console.debug('debug : no list');
+        //$location.path("/lists/new/");
+    }
 });
 
 
@@ -45,7 +41,7 @@ giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams,
                 console.log('success : ' + success);               
             },
             function (error) {
-                console.log('error : ' + error);
+                console.error('error : ' + error);
                 swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" });
             }
         );
@@ -72,7 +68,7 @@ giftControllersModule.controller('GiftListNewCtrl', function ($scope, $routePara
                 $location.path("/lists/edit/" + giftListDTOCreated.id);
             },
             function (error) {
-                //console.log('error : ' + error.status);
+                console.error('error : ' + error.status);
                 //swal({ title: "Error!", text: "Here's my error message!", type: "error", confirmButtonText: "Ok" });
             }
         );

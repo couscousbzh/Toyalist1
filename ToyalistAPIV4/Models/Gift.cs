@@ -11,7 +11,6 @@ namespace ToyalistAPIV4.Models
    
     public class Gift
     {
- 
         public string Id { get; set; }
         public string OwnerUserId { get; set; }
         public string GiftListId { get; set; }      
@@ -25,6 +24,9 @@ namespace ToyalistAPIV4.Models
         public List<String> ImagesURL { get; set; }
 
         public List<String> BuyersName { get; set; }
+
+
+        public virtual GiftList GiftList { get; set; }
 
     }
 }

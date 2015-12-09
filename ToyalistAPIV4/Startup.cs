@@ -36,7 +36,16 @@ namespace ToyalistAPIV4
 
         private void ConfigureWebApi(HttpConfiguration config)
         {
+            //Autoriser les requetes d'un autre domaine
+            config.EnableCors();
+
             config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

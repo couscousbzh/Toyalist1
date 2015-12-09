@@ -7,13 +7,12 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-
-//using System.Web.Http.Cors;
+using System.Web.Http.Cors;
 using ToyalistAPIV4.Models;
 
 namespace ToyalistAPIV4.Controllers
 {
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GiftsController : BaseApiController
     {
         static readonly IGiftRepository repository = new GiftRepository();
