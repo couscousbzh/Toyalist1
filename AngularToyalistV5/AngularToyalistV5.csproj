@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="help.txt" />
+    <Content Include="js\wit.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
