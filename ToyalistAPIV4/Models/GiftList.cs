@@ -20,9 +20,7 @@ namespace ToyalistAPIV4.Models
         public string TotalPrice { get; set; }
 
         public bool IsOwnerTheBeneficary { get; set; } //Permet de savoir si le créateur de la liste (owner) est le bénéficiaire des cadeaux, cela permettrait d'afficher ou non la liste des personnes qui prennent en charge le cadeau
-
-        public string UserSid { get; set; }
-
+                
         public virtual List<Gift> Gifts { get; set; }
 
     }

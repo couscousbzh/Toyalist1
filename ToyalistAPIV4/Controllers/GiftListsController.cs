@@ -24,20 +24,27 @@ namespace ToyalistAPIV4.Controllers
     {
         static readonly IGiftListRepository repository = new GiftListRepository(new ApplicationDbContext());
 
-        //[Authorize(Roles = "Admin")]
+
+        [Authorize]
         [HttpGet]
         public IEnumerable<GiftList> GetAllGiftLists()
         {
-            return repository.GetAll();
+            //Ne renvoit que les listes authorisées par le userID/Role            
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+            if (User.IsInRole("Admin"))
+                return repository.GetAll();
+             else
+                return repository.GetAllGiftListsByUserId(user.Id);
         }
 
         //[Authorize]
-        [HttpGet]
-        [Route("user/{userid}")]
-        public IEnumerable<GiftList> GetAllGiftListsByUserId(string userid)
-        {
-            return repository.GetAllGiftListsByUserId(userid);
-        }
+        //[HttpGet]
+        //[Route("user/{userid}")]
+        //public IEnumerable<GiftList> GetAllGiftListsByUserId(string userid)
+        //{
+        //    return repository.GetAllGiftListsByUserId(userid);
+        //}
 
 
         //[Authorize]
@@ -107,31 +114,41 @@ namespace ToyalistAPIV4.Controllers
                 return NotFound();                
             }
 
-            return StatusCode(HttpStatusCode.OK);
-
-            
+            return StatusCode(HttpStatusCode.OK);            
         }
 
+            
         [Authorize]
         [HttpDelete]
-        public IHttpActionResult DeleteGift(string  id)
+        public HttpResponseMessage DeleteGiftList(string  id)
         {
             try
             {
                 GiftList item = repository.Get(id);
                 if (item == null)
                 {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    return new HttpResponseMessage(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    //Check if list belong to current user or admin
+                    ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+                    //&& user.Roles.Any()
+
+                    bool isUserAdmin = User.IsInRole("Admin");                    
+
+                    if (item.OwnerUserId != user.Id && !isUserAdmin)
+                       return new HttpResponseMessage(HttpStatusCode.Forbidden);
                 }
 
-                repository.Remove(id);
+                repository.Remove(item);
 
-                return Ok(item);
+                return new HttpResponseMessage(HttpStatusCode.OK);
 
             }
-            catch (Exception) //DbUpdateConcurrencyException
-            {
-                return NotFound();
+            catch (Exception)
+            {                
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }
         }
 

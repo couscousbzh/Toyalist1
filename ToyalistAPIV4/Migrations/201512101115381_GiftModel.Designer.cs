@@ -7,13 +7,13 @@ namespace ToyalistAPIV4.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class giftmodel : IMigrationMetadata
+    public sealed partial class GiftModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(giftmodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(GiftModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512091026591_gift-model"; }
+            get { return "201512101115381_GiftModel"; }
         }
         
         string IMigrationMetadata.Source

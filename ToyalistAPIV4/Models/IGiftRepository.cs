@@ -12,7 +12,7 @@ namespace ToyalistAPIV4.Models
         IEnumerable<Gift> GetByGiftListId(string id);
         Gift Get(string id);
         Gift Add(Gift item);
-        void Remove(string id);
+        void Remove(Gift item);
         bool Update(Gift item);
     }
 }

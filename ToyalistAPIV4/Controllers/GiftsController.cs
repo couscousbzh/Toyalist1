@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 
@@ -6,8 +8,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using ToyalistAPIV4.Infrastructure;
 using ToyalistAPIV4.Models;
 
 namespace ToyalistAPIV4.Controllers
@@ -15,7 +19,7 @@ namespace ToyalistAPIV4.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GiftsController : BaseApiController
     {
-        static readonly IGiftRepository repository = new GiftRepository();
+        static readonly IGiftRepository repository = new GiftRepository(new ApplicationDbContext());
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
@@ -23,6 +27,7 @@ namespace ToyalistAPIV4.Controllers
         {
             return repository.GetAll();
         }
+
         [Authorize]
         [HttpGet]
         public IEnumerable<Gift> GetGifts([FromUri]string giftlistid)
@@ -63,11 +68,11 @@ namespace ToyalistAPIV4.Controllers
 
             try
             {
+                //Récupération de l'id de l'utilisateur en cours
+                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+                gift.OwnerUserId = user.Id;
+
                 Gift createdGift = repository.Add(gift);
-
-                //TO DO : ajout en BD 
-
-
                 return Ok(createdGift);
             }
             catch (Exception ex)
@@ -82,14 +87,6 @@ namespace ToyalistAPIV4.Controllers
         [HttpPut]
         public IHttpActionResult PutGift(string id, Gift gift)
         {
-            //gift.Id = id;
-            //if (!repository.Update(gift))
-            //{
-            //    throw new HttpResponseException(HttpStatusCode.NotFound);
-            //}
-
-
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -99,24 +96,20 @@ namespace ToyalistAPIV4.Controllers
             {
                 return BadRequest();
             }
-
-            //db.Entry(gift).State = EntityState.Modified;
-
+                       
             try
             {
                 if (!repository.Update(gift))
                 {
                     throw new HttpResponseException(HttpStatusCode.NotFound);
-                }
-                //db.SaveChanges();
+                }                
             }
-            catch (Exception) //DbUpdateConcurrencyException
+            catch (Exception ex) 
             {
                 return NotFound();                
             }
 
             return StatusCode(HttpStatusCode.OK);
-
             
         }
 
@@ -132,7 +125,7 @@ namespace ToyalistAPIV4.Controllers
                     throw new HttpResponseException(HttpStatusCode.NotFound);
                 }
 
-                repository.Remove(id);
+                repository.Remove(item);
 
                 return Ok(item);
 

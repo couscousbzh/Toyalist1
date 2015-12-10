@@ -1,33 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToyalistAPIV4.Infrastructure;
 
 namespace ToyalistAPIV4.Models
 {
     public class GiftRepository : IGiftRepository
     {
-        private List<Gift> gifts = new List<Gift>();
+        internal ApplicationDbContext _dbContext;
+        internal DbSet<Gift> _dbSet;
 
         //Constuctor    
-        public GiftRepository()
-        {           
+        public GiftRepository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+            _dbSet = dbContext.Set<Gift>();
         }
 
         public IEnumerable<Gift> GetAll()
         {
-            return gifts;
+            return _dbSet.ToList();
         }
-
+        
+        public IEnumerable<Gift> GetAllGiftListsByUserId(string userId)
+        {
+            return _dbSet.Select(p => p).Where(x => x.OwnerUserId == userId).ToList();
+        }
+        
         public IEnumerable<Gift> GetByGiftListId(string id)
         {
-            return gifts.Select(p => p).Where(x => x.GiftListId == id).ToList();
+            return _dbSet.Select(p => p).Where(x => x.GiftListId == id).ToList();
         }
         
         public Gift Get(string id)
         {
-            return gifts.Find(p => p.Id == id);
+            return _dbSet.Find(id);
         }
 
         public Gift Add(Gift item)
@@ -38,28 +48,37 @@ namespace ToyalistAPIV4.Models
             }
             
             item.Id = Tools.GetRandomKey();
-            gifts.Add(item);
+
+            _dbSet.Add(item);
+            _dbContext.SaveChanges();
+
             return item;
         }
 
-        public void Remove(string id)
+        public void Remove(Gift item)
         {
-            gifts.RemoveAll(p => p.Id == id);
+            try
+            {              
+                _dbSet.Remove(item);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool Update(Gift item)
         {
             if (item == null)
             {
-                throw new ArgumentNullException("item");
+                throw new ArgumentNullException("entityToUpdate");
             }
-            int index = gifts.FindIndex(p => p.Id == item.Id);
-            if (index == -1)
-            {
-                return false;
-            }
-            gifts.RemoveAt(index);
-            gifts.Add(item);
+
+            _dbContext.Gifts.Attach(item);
+            _dbContext.Entry(item).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+
             return true;
         }
     }

@@ -9,9 +9,7 @@ using ToyalistAPIV4.Infrastructure;
 namespace ToyalistAPIV4.Models
 {
     public class GiftListRepository : IGiftListRepository
-    {
-        private List<GiftList> allGiftList = new List<GiftList>();
-
+    { 
         internal ApplicationDbContext _dbContext;
         internal DbSet<GiftList> _dbSet;
 
@@ -50,11 +48,27 @@ namespace ToyalistAPIV4.Models
             return item;
         }
 
-        public void Remove(string  id)
+        public void Remove(GiftList item)
         {
-            GiftList entityToDelete = _dbSet.Find(id);
-            _dbSet.Remove(entityToDelete);
-            _dbContext.SaveChanges();
+            try {
+                //TODO : totalement ineficace, on load une liste de gift pour les effacer ensuite... ya pas mieux ?
+                //j'ai tenté une authorisation de delete cascading dans le modelcreate du context, ca plante pour des raisons annexe à Asp.net Identity...
+                //Bon en tout ca ca marche
+                item.Gifts = _dbContext.Gifts.Select(x => x).Where(x => x.GiftListId == item.Id).ToList();
+
+                //Manual Cascading delete
+                _dbContext.Gifts.RemoveRange(item.Gifts);
+                _dbContext.GiftLists.Remove(item);
+
+                //_dbSet.Remove(item);
+
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public bool Update(GiftList item)

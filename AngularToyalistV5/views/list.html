@@ -1,9 +1,6 @@
-﻿
-
-<h1>Vos listes :</h1>
-
+﻿<h1>Vos listes :</h1>
 <ul>
     <li ng-repeat="list in lists">
-        <h1>{{list.name}} - <a href="/#/lists/edit/{{list.id}}">edit</a></h1>
+        <h1><a href="/#/lists/{{list.id}}">{{list.name}}</a> - <a href="/#/lists/edit/{{list.id}}">edit</a> <a ng-click="deleteList(list.id, $index)"><i class="fa fa-trash-o"></i> Delete </a></h1>
     </li>
 </ul>

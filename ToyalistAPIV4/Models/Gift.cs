@@ -21,9 +21,9 @@ namespace ToyalistAPIV4.Models
         public string Description { get; set; }
         public string ImageURL { get; set; }
 
-        public List<String> ImagesURL { get; set; }
+        public virtual List<String> ImagesURL { get; set; }
 
-        public List<String> BuyersName { get; set; }
+        public virtual List<String> BuyersName { get; set; }
 
 
         public virtual GiftList GiftList { get; set; }

@@ -3,7 +3,7 @@ namespace ToyalistAPIV4.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class giftmodel : DbMigration
+    public partial class GiftModel : DbMigration
     {
         public override void Up()
         {
@@ -16,7 +16,6 @@ namespace ToyalistAPIV4.Migrations
                         Name = c.String(),
                         TotalPrice = c.String(),
                         IsOwnerTheBeneficary = c.Boolean(nullable: false),
-                        UserSid = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

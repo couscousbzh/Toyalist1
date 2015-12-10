@@ -25,9 +25,29 @@ namespace ToyalistAPIV4.Migrations
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
             /*************/
+            /*   ROLES   */
+            /*************/
+            if (roleManager.Roles.Count() == 0)
+            {
+                roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
+
+            /*************/
             /*   USERS   */
             /*************/
             var user = new ApplicationUser()
+            {
+                UserName = "Admin",
+                Email = "dev@reactor.fr",
+                EmailConfirmed = true,
+                FirstName = "Dieu",
+                LastName = "God",
+                Level = 1,
+                JoinDate = DateTime.Now.AddYears(-1)
+            };
+            var user2 = new ApplicationUser()
             {
                 UserName = "YannV",
                 Email = "yannvasseur@reactor.fr",
@@ -39,25 +59,19 @@ namespace ToyalistAPIV4.Migrations
             };
 
             manager.Create(user, "Password=22");
+            manager.Create(user2, "Password=22");            
 
-            if (roleManager.Roles.Count() == 0)
-            {
-                roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
-            }
-
-            var adminUser = manager.FindByName("YannV");
+            var adminUser = manager.FindByName("Admin");
+            var simpleUser = manager.FindByName("YannV");
 
             manager.AddToRoles(adminUser.Id, new string[] { "SuperAdmin", "Admin" });
+            manager.AddToRoles(simpleUser.Id, new string[] { "User" });
 
             /***********************/
             /*   GIFTS & GIFLIST   */
             /***********************/
-
-            context.GiftLists.AddOrUpdate(GenerateSampleGiftListsV1(adminUser.Id));
-            context.GiftLists.AddOrUpdate(GenerateSampleGiftListsV2(adminUser.Id));
-            
+            context.GiftLists.AddOrUpdate(GenerateSampleGiftListsV1(simpleUser.Id));
+            context.GiftLists.AddOrUpdate(GenerateSampleGiftListsV2(simpleUser.Id));            
         }
 
         private GiftList GenerateSampleGiftListsV1(string userId)

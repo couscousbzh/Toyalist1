@@ -6,28 +6,38 @@
 /**************************/
 //Controler qui affiche les listes d'un user (sans ses gifts)
 giftControllersModule.controller('ListCtrl', function ($scope, $routeParams, $location, GiftListDTO) {
-    
+
     $scope.lists = GiftListDTO.query(
            function (success) {
-               console.log('success : ' + success);
+               //console.log('success : ' + success);
+               if ($scope.lists.length == 0) {
+                   console.debug('debug : no list');
+                   //$location.path("/lists/new/");
+               }
            },
            function (error) {
                console.error('error : ' + error);
                //swal({ title: "Error!", text: "Cette liste n'existe pas ou n'existe plus.", type: "error", confirmButtonText: "Ok" });
            }
-       );
+    );
 
-    if ($scope.lists.length == 0) {
-        console.debug('debug : no list');
-        //$location.path("/lists/new/");
-    }
+
+
+    $scope.deleteList = function (listId, index) {
+        GiftListDTO.delete({ id: listId }, function () {
+            //Remove the list on the view
+            $scope.lists.splice(index, 1);
+        });
+    };
+
+
 });
 
 
 /***********************/
 /*    GiftListCtrl     */
 /***********************/
-//Controler qui affiche une liste avec ses gifts
+//Controler qui affiche une liste avec ses gifts en mode publique
 giftControllersModule.controller('GiftListCtrl', function ($scope, $routeParams, GiftListDTO, GiftDTO) {
     
     /******************************************************/
@@ -82,9 +92,7 @@ giftControllersModule.controller('GiftListNewCtrl', function ($scope, $routePara
 /***************************/
 /*Edit de liste de cadeau */
 giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routeParams, $location, GiftListDTO, GiftDTO, CrawlerService) {
-
-    //TODO : faire le check d'un code d'une liste qui n'existe pas. 
-
+       
     /******************************************************/
     /* LOAD de la liste complete des cadeaux depuis l'API */
     //$scope.list = GiftListDTO.get({ id: $routeParams.giftlistid });
@@ -114,10 +122,8 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routePar
         });
     };
 
-    $scope.addNewGift = function () {      
-
+    $scope.addNewGift = function () {     
         //console.log(formAddGift.name.value);
-
         //console.log($scope.list.giftlistid);
         //console.log($routeParams.giftlistid);
         
@@ -207,7 +213,7 @@ giftControllersModule.controller('GiftListEditCtrl', function ($scope, $routePar
 
         /*************************************/
 
-        //console.log(myNewgift);
+        console.log(myNewgift);
 
         //Cree un objet giftDTO, Angular va gérer en Restfull la création grace a $resource.
         var giftDTOCreated = GiftDTO.create(myNewgift, function () {
@@ -313,10 +319,7 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
             });
         }
         else {
-            console.warn('$scope.giftForm.$error : ' + $scope.giftForm.$error);
-
-
-
+            console.error('$scope.giftForm.$error : ' + $scope.giftForm.$error);
             swal({ title: "Error!", text: "Il semblerait que certain champs soit mal renseigner : ", type: "error", confirmButtonText: "Ok" });
         }
     }
@@ -343,14 +346,18 @@ giftControllersModule.controller('GiftEditCtrl', function ($scope, $routeParams,
         
         if (giftForm.newImageUrl.value.length > 0)
         {
-            //TODO : faire un controle de l'url et filtrer les site porno, nazi ou qui parle de tricot.
+            //TODO : faire un controle de l'url et filtrer les site porno, nazi ou qui parle de tricot :)
 
             //remplace directement l'image principale si absente
             if ($scope.gift.imageURL == 'http://toyalist.reactor.fr/images/no-thumb.png')
                 $scope.gift.imageURL = giftForm.newImageUrl.value;
-            else
+            else {
+                //Si l'array d'image est null on l'initialise
+                if (!$scope.gift.imagesURL)
+                    $scope.gift.imagesURL = [];
+                
                 $scope.gift.imagesURL.push(giftForm.newImageUrl.value);
-           
+            }
             giftForm.newImageUrl.value = "";
         }
         else {

@@ -25,5 +25,15 @@ namespace ToyalistAPIV4.Infrastructure
         public DbSet<Gift> Gifts { get; set; }
         public DbSet<GiftList> GiftLists { get; set; }
 
+
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    //modelBuilder.Entity<GiftList>()
+        //    //    .HasOptional(a => a.Gifts)
+        //    //    .WithOptionalDependent()
+        //    //    .WillCascadeOnDelete(true);
+        //}
+
     }
 }
