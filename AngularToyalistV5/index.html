@@ -75,12 +75,12 @@
                 <li><a href="generic.html">Generic</a></li>
                 <li><a href="elements.html">Elements</a></li>-->
                 <!--<li><a href="#" class="button special">Sign Up</a></li>-->
-                <li>is auth : {{authentication.isAuth}}</li>
-                <li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>
+                <!--<li>is auth : {{authentication.isAuth}}</li>-->
+                <li data-ng-hide="!authentication.isAuth"><a href="#">Bienvenue {{authentication.userName}}</a></li>
                 <li data-ng-hide="!authentication.isAuth"><a href="#/lists">My lists</a></li>
-                <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
-                <li data-ng-hide="authentication.isAuth"> <a href="#/login" class="button special">Login</a></li>
-                <li data-ng-hide="authentication.isAuth"> <a href="#/signup" class="button special">Sign Up</a></li>
+                <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">se déconnecter</a></li>
+                <li data-ng-hide="authentication.isAuth"> <a href="#/login" class="button special">se connecter</a></li>
+                <li data-ng-hide="authentication.isAuth"> <a href="#/signup" class="button special">s'inscrire</a></li>
             </ul>
         </nav>
     </header>

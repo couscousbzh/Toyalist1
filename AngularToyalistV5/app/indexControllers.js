@@ -7,6 +7,7 @@ indexControllersModule.controller('HeaderCtrl', function ($scope, authService) {
 
     $scope.logOut = function () {
         authService.logOut();
+        console.log('tu me vois ?');
         $location.path('/home');
     }
 });
